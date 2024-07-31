@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>移动画板</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #1d1c1c;
+        height: 100%;
+    }
+
+    #canvas {
+        /* display: block; */
+        position: absolute;
+        background-color: #3f350d;
+        /* 
+        #023408
+        rgb(53 43 11)
+        rgb(53 43 50)
+        */
+        /* touch-action: none; */
+    }
+    .btns {
+        user-select: none;
+        position: fixed;
+        bottom: 16px;
+        left: 5px;
+        z-index: 2;
+        font-size: 10vw;
+        color: gray;
+    }
+    .btns .btn {
+        cursor: pointer;
+        background-color: #80808030;
+        padding: 0 10px;
+        border-radius: 1vw;
+        box-shadow: #999797c7 0px 1px 0px 1px;
+    }
+
+    #touchAxis {
+        position: fixed;
+        left: 2px;
+        top: 2px;
+        font-size: 12px;
+        color: white;
+    }
+
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<div class="btns">
+    <span class="btn" onclick="undo()">←</span>
+    <span class="btn" onclick="redo()">→</span>
+    <span class="btn" onclick="reset()">o</span>
+</div>
+
+<script src="painter.js"></script>
+<script src="paintboard.js"></script>
+
+<script>
+    // 判断是否为移动设备
+    if (! /Mobi/.test(navigator.userAgent)) {
+        document.querySelector('.btns').style.fontSize = '25px';
+    }
+</script>
+
+</body>
+</html>

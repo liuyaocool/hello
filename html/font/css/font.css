@@ -1,0 +1,22 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    text-align: center;
+    color: white;
+}
+textarea {
+    resize: vertical;
+    width: calc(100% - 26px);
+    height: calc(100% - 188px);
+    background: none;
+}
+.title {
+    text-align: left;
+    box-sizing: border-box;
+    padding: 20px 0 20px 13px;
+}
+.title, textarea { 
+    font-size: 66px;
+    font-family: "pageFont";
+}
