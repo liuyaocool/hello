@@ -57,15 +57,18 @@ function doHttp(option) {
     http.send(option.body ? option.body : null);
 }
 
-function fileChooser(accept, getFileFunc) {
+function fileChooser(multiple, accept, getFileFunc) {
     if (!isFunc(getFileFunc)) return;
     let fileInput = document.createElement('input');
+    if (multiple === true) {
+        fileInput.multiple = true;
+    }
     fileInput.type = 'file';
     if (accept) {
         fileInput.accept = accept;
     }
     fileInput.onchange = function (ev) {
-        let file = ev.target.files[0];
+        let file = ev.target.files;
         if (isFunc(getFileFunc)) getFileFunc(file);
     }
     fileInput.click();
