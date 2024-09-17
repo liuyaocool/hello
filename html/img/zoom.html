@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Zoom</title>
+    <link rel="stylesheet" href="../../css/theme.css"/>
+
+    <style>
+    </style>
+</head>
+<body>
+
+<select id="type">
+    <option value="size">按最大尺寸</option>
+    <option value="ratio">按比例</option>
+</select>
+<input type="text" placeholder="比例0~1, 尺寸>0 (kb)" id="ratio" onblur="numBlur(this)" style="margin-right: 18px;">
+直接下载: <input type="checkbox" id="downloadtype" checked="checked" style="margin-right: 18px;">
+<button onclick="getFile()">选择文件</button>
+<table><tbody id="preview">
+
+</tbody></table>
+
+<script src="../../js/config.js"></script>
+<script src="../../js/base.js"></script>
+<script>
+    // 检查页面是否由 iframe 引用
+    if (window.self === window.top) {
+        document.body.style.backgroundColor = '#2e3133';
+    }
+    function numBlur(that) {
+        let v = that.value;
+        if (!v) return;
+        switch(document.getElementById('type').value) {
+            case 'size':
+                that.value = v > 0 ? v : 10;
+                break;
+            case 'ratio': 
+                that.value = (v > 0 && v < 1) ? v : 1;
+                break;
+        }
+    }
+    function getFile() {
+        fileChooser(true, null, files => {
+            for (let i = 0; i < files.length; i++) {                
+                console.log(`原始文件大小: ${files[i].size} ${files[i].type} ${files[i].name}`);
+                let fn = getFileName(files[i].name, '.', '-zip.');
+                let zipType = document.getElementById('type').value;
+                let zipData = document.getElementById('ratio').value * 1
+                compressImage(files[i], zipType, zipData).then(blob => {
+                    console.log(`blob size: ${blob.size}`);
+                    // console.log('压缩后的文件大小:', compressedFile.size);
+                    if (document.getElementById('downloadtype').checked) {
+                        download(blob, fn);
+                    } else{
+                        // 将 Blob 转换为 File 对象
+                        // const compressedFile = new File([blob], fn, {
+                        //     type: file.type,
+                        //     lastModified: Date.now()
+                        // });
+                        let tr = document.createElement('tr');
+                        let tds = [document.createElement('img'), `${(blob.size/1000).toFixed(2)} kb`, createA(blob, fn)];
+                        tds[0].src = tds[2].href;
+                        for (let i = 0; i < tds.length; i++) {
+                            let td = document.createElement('td');
+                            tr.append(td);
+                            td.append(tds[i])
+                        }
+                        document.getElementById('preview').append(tr);
+                    }
+                }).catch((error) => {
+                    document.getElementById('preview').innerHTML += `
+                    <tr><td></td><td>${error}</td></tr>`;
+                    console.error('压缩图片失败:', error);
+                });
+            };
+        });
+    }
+
+function compressImage(file, zipType, zipData) {
+    return new Promise((resolve, reject) => {
+        // 创建 FileReader 读取文件
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                // 创建 Canvas 画布
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                let drawTo = ratio => {
+                    console.log(`ratio: ${ratio}`);
+                    // 计算压缩后的宽高
+                    let w = img.width * ratio;
+                    let h = img.height * ratio;
+                    canvas.width = w;
+                    canvas.height = h;
+                    ctx.drawImage(img, 0, 0, w, h);
+                }
+                let ratioSet = (ratio) => {
+                    drawTo(ratio);
+                    canvas.toBlob(blob => resolve(blob), 'image/jpeg');
+                }
+                let sizeSet = (rs, rm, re) => {
+                    drawTo(rm);
+                    canvas.toBlob(blob => {
+                        let sizeDiff = blob.size - zipData * 1000;
+                        console.log(`sizeDiff: ${sizeDiff}`)
+                        if (sizeDiff > 100) {
+                            sizeSet(rs, (rs + rm) / 2, rm);
+                        } else if (sizeDiff < -100) {
+                            sizeSet(rm, (rm + re) / 2, re);
+                        } else {
+                            resolve(blob);
+                        }
+                        // console.log(`blob:${blob.size}  test ratio: ${zipData * 1000 / blob.size}`);
+                        // let ratio = (zipData * 1000 / blob.size).toFixed(2);
+                        // ratioSet(ratio);
+                    }, 'image/jpeg');
+                }
+                switch(zipType) {
+                    case 'size': sizeSet(0, 0.5, 1); break;
+                    case 'ratio': ratioSet(zipData || 0.9); break;
+                }
+            };
+            img.onerror = (error) => reject(error);
+        };
+        reader.onerror = (error) => reject(error);
+    });
+}
+function getFileName(str) {
+    if (true) {
+        return str + '.jpg';
+    }
+    const idx = str.lastIndexOf('.');
+    return idx === -1 ? `${str}.jpg` : 
+        (str.substring(0, idx) + '-zip' + str.substring(idx + 1));
+}
+function download(blob, filename)  {
+    createA(blob, filename).click();
+}
+function createA(blob, filename) {
+    let adom = document.createElement('a');
+    adom.href = URL.createObjectURL(blob); // 创建blob地址
+    adom.download = filename;
+    adom.innerText = `下载 ${filename}`;
+    return adom;
+}
+
+</script>
+</body>
+</html>
