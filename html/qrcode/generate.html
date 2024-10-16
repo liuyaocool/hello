@@ -12,19 +12,27 @@
 <body>
     <textarea id="url" placeholder="input string here"></textarea>
     <button type="button" onclick="generate()">Generate</button>
+    correctLevel: <select id="correctLevel">
+        <option value="L">L</option>
+        <option value="M">M</option>
+        <option value="H">H</option>
+        <option value="Q" selected>Q</option>
+    </select>
     <div id="qrcode"></div>
     <script src="../../js/config.js"></script>
     <script src="../../js/base.js"></script>
     <script src="https://resource-8fp.pages.dev/js/qrcode/en/qrcode.min.js"></script>
     <script>
-        const qrcode = new QRCode(document.getElementById("qrcode"), {
-            width: 600,
-            height: 600,
-            colorDark : "#000000",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        }); 
         function generate() {
+            document.getElementById("qrcode").innerHTML = '';
+            const qrcode = new QRCode(document.getElementById("qrcode"), {
+                width: 600,
+                height: 600,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                // version: 10,
+                correctLevel : QRCode.CorrectLevel[document.getElementById('correctLevel').value],
+            });
             qrcode.makeCode(document.getElementById('url').value);
         }
     </script>
