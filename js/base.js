@@ -83,6 +83,40 @@ function getFilePath(file, getPathFunc) {
     }
 }
 
+function fileChoose(multiple, accept) {
+    return new Promise((resolve, reject) => {
+        let fileInput = document.createElement('input');
+        if (multiple === true) {
+            fileInput.multiple = true;
+        }
+        fileInput.type = 'file';
+        if (accept) {
+            fileInput.accept = accept;
+        }
+        fileInput.onchange = function (ev) {
+            resolve(ev.target.files);
+        }
+        fileInput.click();
+    });
+}
+
+function getTextFromFile(file) {
+    return new Promise((resolve, reject) => {
+        if (!file) {
+            resolve("");
+            return;
+        }
+        const reader = new FileReader(); // 创建 FileReader 对象
+        // 当文件读取成功时的回调
+        reader.onload = function(e) {
+            resolve(e.target.result);
+        };
+        reader.onerror = (error) => reject(error);
+        // 读取文件内容为文本
+        reader.readAsText(file);
+    });
+}
+
 function isFunc(f) {
     return f && typeof f === 'function';
 }
