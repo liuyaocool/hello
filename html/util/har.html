@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>✿ har ayaylze ✿</title>
+    <link rel="stylesheet" href="../../css/theme.css"/>
+    <style>
+        :root {
+            --top-height: 26px;
+            --app-padding: 5px;
+        }
+        #app {
+            padding: var(--app-padding);
+            height: calc(100% - 15px);
+        }
+        .main {
+            height: calc(100% - var(--top-height)); 
+            overflow: auto;
+            position: relative;
+            font-size: 14px;
+        }
+        .list-url {
+            cursor: pointer;
+        }
+        .status-code {
+            color: chartreuse;
+        }
+        .box {
+            background-color: rgba(52, 66, 63, 0.39);
+            backdrop-filter: blur(29px);
+            border-radius: 6px;
+            padding: 5px 10px;
+            margin-bottom: 5px;
+        }
+        .detail {
+            position: fixed;
+            top: calc(var(--top-height) + var(--app-padding) * 2);
+            right: 5px;
+            /* bottom: 5px; */
+            max-height: calc(100% - var(--top-height) - var(--app-padding) * 2);
+            width: 70%;
+            overflow: auto;
+            font-size: 14px;
+        }
+        .http-top {
+            position: sticky;
+            top: 0px;
+            z-index: 1;
+            background-color: rgba(121, 108, 35, 0.33);
+        }
+        .close{
+            position: absolute;
+            left: 0px;
+            top: 5px;
+            font-size: 18px;
+            padding: 0px 5px;
+            background: transparent !important;
+            border: none !important;
+        }
+        .http-headLine {
+            color: burlywood;
+        }
+        .http-url {
+            color: gold;
+            text-indent: 1em;
+        }
+        .http-header {
+
+        }
+        .http-header-key {
+            color: #4dd74d;
+        }
+        .http-header-val {
+
+        }
+        .http-data {
+            color: chocolate;
+        }
+        .not-over
+        ,.detail
+        ,.list-url
+        /* ,.http-headLine */
+        /* ,.http-url */
+        /* ,.http-data */
+        {
+            overflow-wrap: break-word; /* 确保长单词换行 */
+            word-wrap: break-word; /* 为旧浏览器的兼容性 */
+            white-space: normal; /* 确保文本正常换行 */
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="button" @click="getFile" value="file">
+    <input type="button" @click="filterStatic" value="-res" style="margin: 0 3px;">
+    <!-- $event.target.value -->
+    <input type="text" v-model="filterWord" @input="filterDatas()" style="width: calc(100% - 100px);">
+    <div class="main">
+        <div class="list-url box" v-for="(row, i) in datas" @click="showDetail(row[2])">
+            <span class="status-code">{{row[0]}}</span> {{row[1]}}
+        </div>
+    </div>
+    <div v-if="null != detail" class="detail">
+        <div class="box http-top">
+            <div class="http-url">{{detail.request.url}}</div>
+            <input type="button" @click="closeDetail" value="✕" class="close">
+        </div>
+        <div class="box">
+            <div class="http-headLine">
+                {{detail.request.method}} {{detail.request.httpVersion}} <br>
+            </div>
+            <div class="http-header" v-for="(row, i) in detail.request.headers">
+                <span class="http-header-key">{{row[0]}}: </span>
+                <span class="http-header-val">{{row[1]}}</span>
+            </div>
+            <br>
+            <pre class="http-data" v-if="'json' == detail.request.contentType" v-html="detail.request.data"></pre>
+            <div class="http-data" v-if="'json' != detail.request.contentType">{{detail.request.data}}</div>
+        </div>
+        <div class="box">
+            <div class="http-headLine">{{detail.response.httpVersion}} {{detail.response.status}} {{detail.response.statusText}}</div>
+            <div class="http-header" v-for="(row, i) in detail.response.headers">
+                <span class="http-header-key">{{row[0]}}: </span>
+                <span class="http-header-val">{{row[1]}}</span>
+            </div>
+            <br>
+            <pre class="http-data" v-if="'json' == detail.response.contentType" v-html="detail.response.data"></pre>
+            <div class="http-data" v-if="'json' != detail.response.contentType">{{detail.response.data}}</div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue@3.4.25/dist/vue.global.js"></script>
+<script src="../../js/base.js"></script>
+<script src="har.js"></script>
+
+</body>
+</html>
