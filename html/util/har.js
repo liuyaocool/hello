@@ -23,6 +23,7 @@ const vm = createApp({
              * }
              */
             allData: [],
+            showIdx: -1,
             // 同上
             detail: null,
             dataHandler: null
@@ -119,10 +120,11 @@ const vm = createApp({
         },
         showDetail(idx) {
             this.detail = this.allData[idx];
-            console.log(idx);
+            this.showIdx = idx;
         },
         closeDetail() {
             this.detail = null;
+            this.showIdx = idx;
         },
         jsonFormat(str) {
             return JSON.stringify(JSON.parse(str), null, 4).replaceAll('\n', '<br>').replaceAll(' ', '&nbsp;')

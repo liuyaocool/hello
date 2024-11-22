@@ -1,0 +1,90 @@
+:root {
+    --top-height: 26px;
+    --app-padding: 5px;
+}
+#app {
+    padding: var(--app-padding);
+    height: calc(100% - 15px);
+}
+.box {
+    background-color: rgba(52, 66, 63, 0.39);
+    backdrop-filter: blur(29px);
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+.main {
+    height: calc(100% - var(--top-height)); 
+    overflow: auto;
+    position: relative;
+    font-size: 14px;
+}
+.list-url {
+    cursor: pointer;
+}
+.list-url:hover {
+    position: relative;
+    z-index: 99;
+    background-color: rgba(85, 113, 90, 0.39);
+}
+.list-url-clicked {
+    background-color: rgba(85, 113, 90, 0.39);
+}
+.status-code {
+    color: chartreuse;
+}
+.detail {
+    position: fixed;
+    top: calc(var(--top-height) + var(--app-padding) * 2);
+    right: 5px;
+    /* bottom: 5px; */
+    max-height: calc(100% - var(--top-height) - var(--app-padding) * 2);
+    width: 70%;
+    overflow: auto;
+    font-size: 14px;
+}
+.http-top {
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    background-color: rgba(121, 108, 35, 0.33);
+}
+.close{
+    position: absolute;
+    left: 0px;
+    top: 5px;
+    font-size: 18px;
+    padding: 0px 5px;
+    background: transparent !important;
+    border: none !important;
+}
+.http-headLine {
+    color: burlywood;
+}
+.http-url {
+    color: gold;
+    text-indent: 1em;
+}
+.http-header {
+
+}
+.http-header-key {
+    color: #4dd74d;
+}
+.http-header-val {
+
+}
+.http-data {
+    color: chocolate;
+}
+.not-over
+,.detail
+,.list-url
+/* ,.http-headLine */
+/* ,.http-url */
+/* ,.http-data */
+{
+    overflow-wrap: break-word; /* 确保长单词换行 */
+    word-wrap: break-word; /* 为旧浏览器的兼容性 */
+    white-space: normal; /* 确保文本正常换行 */
+}
