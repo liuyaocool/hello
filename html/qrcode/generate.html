@@ -10,24 +10,31 @@
     </style>
 </head>
 <body>
-    <textarea id="url" placeholder="input string here"></textarea>
-    <button type="button" onclick="generate()">Generate</button>
-    correctLevel: <select id="correctLevel">
-        <option value="L">L</option>
-        <option value="M">M</option>
-        <option value="H">H</option>
-        <option value="Q" selected>Q</option>
-    </select>
-    <div id="qrcode"></div>
+    <table>
+        <tr><td colspan="2"><textarea id="url" placeholder="input string here"></textarea></td></tr>
+        <tr>
+            <td style="vertical-align: top;">
+                <button type="button" onclick="generate()">Generate</button>
+                correctLevel: <select id="correctLevel">
+                    <option value="L">L</option>
+                    <option value="M">M</option>
+                    <option value="H">H</option>
+                    <option value="Q" selected>Q</option>
+                </select>            
+            </td>
+            <td><div id="qrcode"></div></td>
+        </tr>
+    </table>
     <script src="../../js/config.js"></script>
     <script src="../../js/base.js"></script>
     <script src="https://resource-8fp.pages.dev/js/qrcode/en/qrcode.min.js"></script>
     <script>
         function generate() {
+            let width = Math.min(window.innerHeight*0.9, window.innerWidth*0.9, 600).toFixed()*1;
             document.getElementById("qrcode").innerHTML = '';
             const qrcode = new QRCode(document.getElementById("qrcode"), {
-                width: 600,
-                height: 600,
+                width: width,
+                height: width,
                 colorDark : "#000000",
                 colorLight : "#ffffff",
                 // version: 10,

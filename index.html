@@ -20,6 +20,8 @@
         padding: 0px 25px;
         height: 100%;
         overflow: auto;
+        z-index: 100;
+        position: relative;
     }
     iframe {
         width: calc(100% - var(--menu-width) - 50px);
@@ -187,7 +189,7 @@
             if (resp.ok) resp.text().then(str => {
                 str.split('\n').filter(line => line).forEach(line => {
                     line = line.split('.')[0].split('/');
-                    htmlStr += `<li><a target="main" href="html/font/${line[0]}/${line[1]}.html">${line[0]} ${line[1]}</a></li>`;
+                    htmlStr += `<li><a target="main" href="html/font/${line[0]}/${line[1]}.html">${line[1]}</a></li>`;
                 })
                 document.getElementById('font').innerHTML = htmlStr;
             });

@@ -11,9 +11,12 @@ body {
 body *{
     font-weight: bold;
 }
+table {
+    width: 100%;
+}
 textarea {
     resize: vertical;
-    width: 90%;
+    width: 99%;
     min-height: 20vh;
     line-height: 3vh;
     font-size: 2vh;
@@ -25,5 +28,5 @@ button {
 }
 img {
     border: 10px solid white;
-    margin: auto;
+    /* margin: auto; */
 }
