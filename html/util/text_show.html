@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Text Show</title>
+<link rel="stylesheet" href="../../css/theme.css"/>
+<style>
+    textarea {
+        margin-top: 20px;
+        resize: vertical;
+        width: 99%;
+        min-height: 4vh;
+        line-height: 1vh;
+        font-size: 1vh;
+    }
+</style>
+</head>
+<body>
+    <textarea oninput="document.getElementById('show').innerText=this.value"></textarea>
+    <pre id="show"></pre>
+</body>
+</html>
