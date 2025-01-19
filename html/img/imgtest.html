@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Zoom</title>
+    <link rel="stylesheet" href="../../css/theme.css"/>
+
+    <style>
+    </style>
+</head>
+<body>
+
+<button onclick="getFile()">选择文件</button> 
+尺寸: <span id="imgSize"></span> 进度: <span id="progress"></span>
+<canvas id="imgCompress"></canvas>
+<img src="" id="imgShow">
+
+<script src="../../js/config.js"></script>
+<script src="../../js/base.js"></script>
+<script>
+    // 检查页面是否由 iframe 引用
+    if (window.self === window.top) {
+        document.body.style.backgroundColor = '#2e3133';
+    }
+    function getFile() {
+        fileChooser(true, null, files => {
+            for (let i = 0; i < files.length; i++) {      
+                document.getElementById('imgSize').innerText = Math.round(files[0].size/1000) + 'Kb';
+                const reader = new FileReader();
+                reader.readAsDataURL(files[0]);
+                reader.onload = (event) => {
+                    let imgpath = event.target.result;
+                    document.getElementById('imgShow').src = imgpath;
+                    const img = new Image();
+                    img.src = imgpath;
+                    img.onload = () => {
+                        // 创建 Canvas 画布
+                        // const canvas = document.createElement('canvas');
+                        const canvas = document.getElementById('imgCompress');
+                        const ctx = canvas.getContext('2d');
+                        let w = img.width;
+                        let h = img.height;
+                        canvas.width = w;
+                        canvas.height = h;
+                        ctx.drawImage(img, 0, 0, w, h);
+                        // 创建新的图像数据对象
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const dataRgb = imageData.data; // 获取 RGBA 数组
+
+                        // 缩小倍数
+                        const ratio = 10;
+                        let i = 0, j = 0, rgb, 
+                            // 合并像素点 每行第一个的坐标
+                            mergeIdx,
+                            // 缩小后坐标点(算法用)
+                            nx = 0, ny = 0,
+                            // 缩小后尺寸
+                            nw = (w/ratio).toFixed() * 1,
+                            nh = (h/ratio).toFixed() * 1,
+                            rx, ry;
+                        // 创建新的图像数据对象
+                        const imageDataNew = ctx.createImageData(nw, nh);
+                        for (j = 0; j < dataRgb.length; j++) {
+                            // 取平均值
+                            // rgb = [0, 0, 0];
+                            // for (rx = 0; rx < ratio; rx++) {
+                            //     mergeIdx = ((ny * ratio + rx) * w + nx * ratio) * 4;
+                            //     for (ry = 0; ry < ratio; ry++) {
+                            //         rgb[0] += dataRgb[(mergeIdx + ry) * 4];
+                            //         rgb[1] += dataRgb[(mergeIdx + ry) * 4 + 1];
+                            //         rgb[2] += dataRgb[(mergeIdx + ry) * 4 + 2];
+                            //     }
+                            // }
+                            // // 设置新颜色值
+                            // imageDataNew.data[i++] = rgb[0] / ratio / ratio;  // R
+                            // imageDataNew.data[i++] = rgb[1] / ratio / ratio;  // G
+                            // imageDataNew.data[i++] = rgb[2] / ratio / ratio;  // B
+                            // imageDataNew.data[i++] = 255;     // A (完全不透明)
+                            // 取第一个值
+                            mergeIdx = ((ny * ratio) * w + nx * ratio) * 4;
+                            // 设置新颜色值
+                            imageDataNew.data[i++] = dataRgb[mergeIdx + 0];  // R
+                            imageDataNew.data[i++] = dataRgb[mergeIdx + 1];  // G
+                            imageDataNew.data[i++] = dataRgb[mergeIdx + 2];  // B
+                            imageDataNew.data[i++] = 255;     // A (完全不透明)
+                            // 下一个坐标
+                            nx++;
+                            if (nx >= nw) {
+                                ny++;
+                                nx = 0;
+                                if (ny >= nh) {
+                                    break;
+                                }
+                            }
+                            // 
+                            document.getElementById('progress');
+                        }
+                        canvas.width = nw;
+                        canvas.height = nh;
+                        ctx.putImageData(imageDataNew, 0, 0);
+                        console.log(dataRgb.length);
+                    };
+                    img.onerror = (error) => reject(error);
+                };
+                reader.onerror = (error) => reject(error);
+            };
+        });
+    }
+
+    function getImgRgb(imgData, imgWidth, x, y) {
+        let idx = (y * imgWidth + x) * 4;
+        return imgData[idx, idx+1, idx+2, idx+3];
+    }
+
+    function putImgData(ctx) {
+        // 创建新的图像数据对象
+        const imageData = ctx.createImageData(canvas.width, canvas.height);
+        const data = imageData.data; // 获取 RGBA 数组
+
+        // 设置每个像素的 RGB 值
+        for (let i = 0; i < data.length; i += 4) {
+            // 设置红色通道
+            data[i] = 255;      // R
+            // 设置绿色通道
+            data[i + 1] = 0;    // G
+            // 设置蓝色通道
+            data[i + 2] = 0;    // B
+            // 设置 Alpha 通道
+            data[i + 3] = 255;  // A (完全不透明)
+        }
+
+        // 将修改后的图像数据绘制到 Canvas 上
+        ctx.putImageData(imageData, 0, 0);
+    }
+
+    function downImg() {
+        const canvas = document.getElementById('imgCompress');
+        canvas.toBlob(blob => {
+            download(blob, "test.jpg");
+        }, 'image/jpeg');
+    }
+
+function download(blob, filename)  {
+    createA(blob, filename).click();
+}
+function createA(blob, filename) {
+    let adom = document.createElement('a');
+    adom.href = URL.createObjectURL(blob); // 创建blob地址
+    adom.download = filename;
+    adom.innerText = `下载 ${filename}`;
+    return adom;
+}
+</script>
+</body>
+</html>
