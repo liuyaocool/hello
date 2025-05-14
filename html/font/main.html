@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="font.css">
+</head>
+
+<body>
+    <div class="title"></div>
+    <textarea></textarea>
+    <script>
+        // 检查页面是否由 iframe 引用
+        if (window.self === window.top) {
+            document.body.style.backgroundColor = '#2e3133';
+        }
+
+        (function() {
+            let fontData = location.hash.substr(1).split('/');
+            fontData[1] = fontData[1].split('.');
+            fontData[1][0] = decodeURIComponent(fontData[1][0]);
+            document.getElementsByClassName('title')[0].innerText = fontData[1][0] = 
+                (document.title = fontData[1][0]);
+
+            // https://resource.liuyao.link/font/cn/新蒂绿豆体.otf
+            // const ttfStr = `${}/${encodeURIComponent('华康翩翩体W5')}.ttf`;
+            
+            // 动态创建 <style> 标签
+            const style = document.createElement('style');
+            style.textContent = `
+                @font-face {
+                    font-family: "pageFont";
+                    src: url('https://resource.liuyao.link/font/${fontData[0]}/${encodeURIComponent(fontData[1][0])}.${fontData[1][1]}') format('truetype');
+                }
+            `;
+            document.head.appendChild(style);
+        })()
+    </script>
+</body>
+</html>

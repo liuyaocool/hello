@@ -21,7 +21,8 @@ textarea:focus, input:focus {
 }
 
 a {
-    color: #00ffa8;
+    /* color: #00ffa8; */
+    color: #807200;
     /*color: #daff00;*/
 }
 

@@ -1,0 +1,54 @@
+:root {
+    --menu-width: 136px;
+}
+body {
+    background-color: #000000FF;
+}
+ul {
+    width: var(--menu-width);
+    padding: 0px 25px;
+    height: 100%;
+    /* overflow: auto; */
+    z-index: 100;
+    position: relative;
+}
+iframe {
+    width: calc(100% - var(--menu-width) - 50px);
+    height: 100%;
+    position: absolute;
+    border: none;
+    top: 0;
+    right: 0;
+    z-index: 100;
+}
+div > li {
+    padding-left: 16px;
+}
+ul > li {
+    font-size: 18px;
+}
+li {
+    height: 20px;
+}
+ul {
+    font-family: myfont;
+    height: 100%;
+    overflow: auto;
+}
+li > a {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+li > a:hover {
+  overflow: visible;
+}
+@font-face {
+    font-family: myfont;
+    src: url('https://resource-8fp.pages.dev/font/en/RainbowParty.ttf');
+}
+.ly_germ {
+    opacity: 0.2;
+}
