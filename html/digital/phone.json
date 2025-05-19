@@ -1,0 +1,341 @@
+{
+    "Nova14": {
+        "cpu": "麒麟8000新芯",
+        "model": "TLR-AL00",
+        "time": "2025年5月",
+        "price": {
+            "12+256G": 2699,
+            "12+512G": 2999,
+            "12+512G昆仑玻璃": 3199
+        },
+        "screen": {
+            "type": "OLED",
+            "size": 6.7,
+            "resolution_x": 2412,
+            "resolution_y": 1084,
+            "refresh": 120,
+            "brightness": "",
+            "color": "10.7 亿色，P3 广色域",
+            "other": ""
+        },
+        "battery": {
+            "capacity": 5500,
+            "power": "100W有线充电"
+        },
+        "appearance": {
+            "size_x": "161.73",
+            "size_y": "75.48",
+            "size_z": "7.18",
+            "weight": 192,
+            "shell": ""
+        },
+        "function": {
+            "interface": "支持 USB 2.0",
+            "wlan": "wifi6",
+            "nfc": true
+        }
+    },
+    "Nova14 Pro": {
+        "cpu": "麒麟8020",
+        "model": "MIA-AL00",
+        "time": "2025年5月",
+        "price": {
+            "12+256G": 3499,
+            "12+512G": 3799,
+            "12+512G昆仑玻璃": 3999
+        },
+        "screen": {
+            "type": "OLED",
+            "size": 6.78,
+            "resolution_x": 2776,
+            "resolution_y": 1224,
+            "refresh": 120,
+            "brightness": "",
+            "color": "10.7 亿色，P3 广色域",
+            "other": ""
+        },
+        "battery": {
+            "capacity": 5500,
+            "power": "100W有线充电"
+        },
+        "appearance": {
+            "size_x": "163.4",
+            "size_y": "75.0",
+            "size_z": "7.68",
+            "weight": 207,
+            "shell": ""
+        },
+        "function": {
+            "interface": "支持 USB 2.0",
+            "wlan": "wifi7",
+            "nfc": true
+        },
+        "camera": "红枫原色镜头"
+    },
+    "Nova14 Ultra": {
+        "cpu": "麒麟8020",
+        "model": "MRT-AL10",
+        "time": "2025年5月",
+        "price": {
+            "12+256G": 4199,
+            "12+512G": 4499,
+            "12+1T": 4999
+        },
+        "screen": {
+            "type": "OLED",
+            "size": 6.81,
+            "resolution_x": 2860,
+            "resolution_y": 1272,
+            "refresh": 120,
+            "brightness": "",
+            "color": "10.7 亿色，P3 广色域",
+            "other": ""
+        },
+        "battery": {
+            "capacity": 5500,
+            "power": "100W有线充电"
+        },
+        "appearance": {
+            "size_x": "163.4",
+            "size_y": "75.6",
+            "size_z": "7.78",
+            "weight": 204,
+            "shell": ""
+        },
+        "function": {
+            "interface": "支持 USB 2.0",
+            "wlan": "wifi7",
+            "nfc": true
+        },
+        "camera": "红枫原色镜头"
+    },
+    "Pura X典藏": {
+        "cpu": "麒麟9020",
+        "model": "VDE-AL00"
+    },
+    "Pura X": {
+        "cpu": "麒麟9020",
+        "model": "VDE-AL00"
+    },
+    "Mate X6典藏": {
+        "cpu": "麒麟9020",
+        "model": "ICL-AL10"
+    },
+    "Mate X6": {
+        "cpu": "麒麟9020",
+        "model": "ICL-AL10"
+    },
+    "Mate70 RS": {
+        "cpu": "麒麟9020",
+        "model": "PLU-AL10"
+    },
+    "Mate70 Pro+": {
+        "cpu": "麒麟9020",
+        "model": "PLA-AL10"
+    },
+    "Mate70 Pro": {
+        "cpu": "麒麟9020",
+        "model": "PLR-AL00/PLR-AL30"
+    },
+    "Mate70 Pro优享": {
+        "cpu": "麒麟9020A",
+        "model": "PLR-AL00/PLR-AL30 PLR-AL50"
+    },
+    "Mate70": {
+        "cpu": "麒麟9010",
+        "model": "CLS-AL00/CLS-AL30"
+    },
+    "Mate XT": {
+        "cpu": "麒麟9010",
+        "model": "GRL-AL10"
+    },
+    "Pura70 Ultra": {
+        "cpu": "麒麟9010",
+        "model": "HBP-AL00"
+    },
+    "Pura70 Pro+": {
+        "cpu": "麒麟9010",
+        "model": "HBN-AL10/HBN-AL80"
+    },
+    "Pura70 Pro": {
+        "cpu": "麒麟9010",
+        "model": "HBN-AL00"
+    },
+    "Pura70北斗消息": {
+        "cpu": "麒麟9010E",
+        "model": "ADY-AL10"
+    },
+    "Pura70": {
+        "cpu": "麒麟9000S1",
+        "model": "ADY-AL00"
+    },
+    "Nova12 Ultra星耀": {
+        "cpu": "麒麟9010L"
+    },
+    "Mate X5": {
+        "cpu": "麒麟9000S",
+        "model": "ALT-AL10"
+    },
+    "Mate X5典藏": {
+        "cpu": "麒麟9000S",
+        "model": "ALT-AL10"
+    },
+    "Pocket2": {
+        "cpu": "麒麟9000S"
+    },
+    "Pocket2艺术定制": {
+        "cpu": "麒麟9000S"
+    },
+    "Mate60 RS": {
+        "cpu": "麒麟9000S",
+        "model": "ALN-AL10"
+    },
+    "Mate60 Pro+": {
+        "cpu": "麒麟9000S"
+    },
+    "Mate60 Pro": {
+        "cpu": "麒麟9000S"
+    },
+    "Mate60": {
+        "cpu": "麒麟9000S",
+        "model": "BRA-AL00"
+    },
+    "Nova13 Pro": {
+        "cpu": "麒麟8000新芯",
+        "time": "2024年10月",
+        "model": "MIS-AL00"
+    },
+    "Nova13": {
+        "cpu": "麒麟8000新芯",
+        "time": "2024年10月",
+        "model": "BLK-AL80"
+    },
+    "Nova Flip": {
+        "cpu": "麒麟8000",
+        "time": "2024年8月",
+        "model": "PSD-AL00"
+    },
+    "Nova12 Ultra": {
+        "cpu": "麒麟9000SL",
+        "time": "2023年12月",
+        "model": "ADA-AL00U"
+    },
+    "Nova12 Pro": {
+        "cpu": "麒麟8000",
+        "time": "2023年12月",
+        "model": "ADA-AL00"
+    },
+    "Nova12 活力": {
+        "cpu": "",
+        "time": "2024年9月",
+        "model": "FIN-AL60a"
+    },
+    "Nova12": {
+        "cpu": "麒麟8000",
+        "time": "2023年12月",
+        "model": "BLK-AL00"
+    },
+    "畅享80": {
+        "cpu": "",
+        "titme": "2025年4月",
+        "model": "JUY-AL00",
+        "screen": {
+            "type": "LCD",
+            "size": 6.67,
+            "resolution_x": 1604,
+            "resolution_y": 720,
+            "refresh": 0,
+            "brightness": "",
+            "color": ""
+        },
+        "battery": {
+            "capacity": 6480,
+            "power": "40W有线"
+        },
+        "appearance": {
+            "size_x": "166.05",
+            "size_y": "76.58",
+            "size_z": "8.33",
+            "weight": 206,
+            "shell": ""
+        },
+        "function": {
+            "interface": "",
+            "wlan": "WiFi5"
+        }
+    },
+    "畅享70X": {
+        "cpu": "麒麟8000A",
+        "model": "BRE-AL80"
+    },
+    "畅享 70X 活力": {
+        "cpu": "",
+        "model": "BRE-AL00a"
+    },
+    "畅享 70S": {
+        "cpu": "",
+        "time": "2024年5月",
+        "model": "GFY-AL00"
+    },
+    "vivo Y100t": {
+        "cpu": "天玑8200",
+        "time": "2024年2月",
+        "screen": {
+            "type": "LCD",
+            "size": 6.64,
+            "resolution_x": 2388,
+            "resolution_y": 1080,
+            "refresh": 120,
+            "brightness": "650nit",
+            "color": ""
+        },
+        "battery": {
+            "capacity": 5000,
+            "power": "120w有线充电"
+        },
+        "appearance": {
+            "size_x": "164.58",
+            "size_y": "75.8",
+            "size_z": "8.79",
+            "weight": 200,
+            "shell": "塑料中框"
+        },
+        "function": {
+            "interface": "3.5mm耳机接口",
+            "wlan": "WiFi6",
+            "nfc": true
+        }
+    },
+    "荣耀 X10": {
+        "cpu": "麒麟820",
+        "model": "TEL-AN10",
+        "time": "2020年5月",
+        "screen": {
+            "type": "LCD",
+            "size": 6.63,
+            "resolution_x": 2400,
+            "resolution_y": 1080,
+            "refresh": 90,
+            "brightness": "",
+            "color": "1670万色",
+            "other": "莱茵TUV低蓝光护眼认证"
+        },
+        "battery": {
+            "capacity": 4300,
+            "power": "22.5w有线充电"
+        },
+        "appearance": {
+            "size_x": "163.7",
+            "size_y": "76.5",
+            "size_z": "8.8",
+            "weight": 203,
+            "shell": "塑料中框 塑料后壳"
+        },
+        "function": {
+            "interface": "3.5mm耳机接口",
+            "wlan": "WiFi5",
+            "nfc": false
+        }
+    }
+
+}

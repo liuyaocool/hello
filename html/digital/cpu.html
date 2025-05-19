@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>cpu</title>
+    <link rel="stylesheet" href="../../css/theme.css"/>
+    <style>
+        #app {
+            padding: 10px 8px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        table td {
+            border: 1px solid white;
+            padding: 2px 10px;
+        }
+        thead td {
+            text-align: center;
+        }
+        tbody td:nth-child(n+2):nth-child(-n+4) {
+            min-width: 128px; /* 防止内容挤压 */
+            max-width: 128px; /* 防止拉伸 */
+        }
+        tbody tr td:nth-of-type(1) {
+        }
+
+        label {
+            display: inline-block;
+            white-space: nowrap; /* 强制不换行 */
+            min-width: 139px;
+            /* max-width: 150px; */
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <label><input type="checkbox" v-model="chooseAll" value="true">全选</label>
+    <label v-for="(v, k) in cpu"><input type="checkbox" v-model="choose" :value="k">{{k}}</label>
+
+    <table>
+        <thead>
+            <tr>
+                <td rowspan="2">名称</td>
+                <td colspan="4">cpu</td>
+                <td rowspan="2">gpu</td>
+                <td colspan="2">geekbench6</td>
+                <td rowspan="2">使用机型</td>
+            </tr>
+            <tr>
+                <td>大核</td>
+                <td>中核</td>
+                <td>小核</td>
+                <td>工艺</td>
+                <td>单核</td>
+                <td>多核</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(row, i) in chooseSort">
+                <td>{{row}}</td>
+                <td v-for="(_, i) in [1,1,1]">{{showCpu(cpu[row].cpu, i)}}</td>
+                <td>{{cpu[row].process}}</td>
+                <td>{{cpu[row].gpu}}</td>
+                <td>{{cpu[row].geekbench6 ? cpu[row].geekbench6[0] : '-' }}</td>
+                <td>{{cpu[row].geekbench6 ? cpu[row].geekbench6[1] : '-' }}</td>
+                <td v-html="cpu[row].use ? cpu[row].use.join('<br>') : '-'">{{cpu[row].use}}</td>
+            </tr>
+        </tbody>
+    </table>
+   <div >
+        {{k}}
+   </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.4/vue.global.min.js"></script>
+<script src="https://resource.liuyao.link/js/my/util.js"></script>
+
+<script>
+    const {createApp} = Vue;
+    const vm = createApp({
+        data() {
+            // ? 9000W（T90） 9000w[1255, 3897] T90[1256, 3798]
+            return {
+                chooseAll: false,
+                chooseSort: [],
+                choose: [],
+                /**
+                    "9020": {
+                        "cpu": [
+                            "1*2.5Ghz 泰山",
+                            "3*2.15Ghz 泰山",
+                            "4*1.6Ghz 泰山"
+                        ],
+                        "gpu": "Maleoon920 4CU 840Mhz",
+                        "process": "7nm",
+                        "geekbench6": [1616, 5314],
+                        "site": "https://xxx",
+                        "use": [],
+                    },
+                 */
+                cpu: {},
+                phone: {},
+                pad: {},
+            };
+        },
+        watch: {
+            "chooseAll": {
+                handler(all) {
+                    let choose = [];
+                    if (all) {
+                        for(var k in this.cpu) {
+                            choose.push(k);
+                        }
+                    }
+                    this.chooseSort = choose;
+                    this.choose = choose;
+                }
+            },
+            "choose": {
+                handler(nv) {
+                    let choose = [];
+                    for(var k in this.cpu) {
+                        if (nv.indexOf(k) >= 0) {
+                            choose.push(k);                            
+                        }
+                    }
+                    this.chooseSort = choose;
+                }
+            },
+        },
+        async created() {
+            let cpu = await this.getJsonFile('cpu.json');
+            let phone = await this.getJsonFile('phone.json');
+            let pad = await this.getJsonFile('pad.json');
+            
+            let fillCpuUse = function(data) {
+                let cpuu;
+                for(var k in data) {
+                    if (!(cpuu = data[k].cpu) || !cpu[cpuu]) continue;
+                    if (!cpu[cpuu].use) {
+                        cpu[cpuu].use = [];
+                    }
+                    cpu[cpuu].use.push(k);
+                }    
+            }
+            fillCpuUse(phone);
+            fillCpuUse(pad);
+
+            this.phone = phone;
+            this.pad = pad;
+            this.cpu = cpu;
+            this.defaultChoose();
+        },
+        methods: {
+            async getJsonFile(path) {
+                return JSON.parse(await fetchTextFile(path));
+            },
+            defaultChoose() {
+                [
+                    '麒麟9020'
+                    ,'麒麟9020A'
+                    ,'麒麟T92'
+                    ,'麒麟9010'
+                    ,'麒麟T91B'
+                    ,'麒麟9010W/T91'
+                    ,'麒麟T91A'
+                    ,'麒麟T91C'
+                    ,'麒麟9000S'
+                    ,'麒麟9000SL'
+                    ,'麒麟8020'
+                    ,'麒麟8000新芯'
+                    ,'麒麟8000A'
+                    ,'麒麟820'
+                    ,'天玑9300+'
+                    ,'天玑9300'
+                    ,'天玑8200'
+                ].forEach(e => {
+                    this.chooseSort.push(e);
+                    this.choose.push(e);
+                });
+            },
+            showCpu(obj, i) {
+                if (obj[i] && obj[i].length == 3) {
+                    return `${obj[i][0]}*${obj[i][1]}Ghz ${obj[i][2]}`;
+                }
+                return '-';
+            }
+        }
+    }).mount('#app');
+
+    // 检查页面是否由 iframe 引用
+    if (window.self === window.top) {
+        document.body.style.backgroundColor = '#2e3133';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>phone</title>
+    <link rel="stylesheet" href="../../css/theme.css"/>
+    <style>
+        #app {
+            padding: 10px 8px;
+        }
+        table {
+            /* 表格间无间隙 */
+            /* border-collapse: collapse; */
+        }
+        table td {
+            padding: 2px 10px;
+            /* 不换行 */
+            /* white-space: nowrap; */
+        }
+        table th {
+            vertical-align: top;
+        }
+
+        label {
+            display: inline-block;
+            white-space: nowrap; /* 强制不换行 */
+            min-width: 150px;
+            max-width: 150px;
+        }
+        h2 {
+            margin: 8px 0px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <label v-for="(v, k) in phone"><input type="checkbox" name="name" v-model="choose" :value="k">{{k}}</label>
+
+    <table>
+        <tbody>
+            <!-- <tr><td><h2>基本</h2></td></tr> -->
+            <tr><th></th><td v-for="(row, i) in choose"><h2>{{row}}</h2></td></tr>
+            <tr><th>cpu</th><td v-for="(row, i) in choose">{{phone[row].cpu}}</td></tr>
+            <tr><th>型号</th><td v-for="(row, i) in choose">{{phone[row].model}}</td></tr>
+            <tr><th>上市时间</th><td v-for="(row, i) in choose">{{phone[row].time}}</td></tr>
+            <tr><th>价格</th><td v-for="(row, i) in choose">
+                <span v-for="(v, k) in phone[row].price">{{v}}（{{k}}）<br></span>
+            </td></tr>
+            <tr><td><h2>屏幕</h2></td></tr>
+            <tr><th>类型</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'type')}}</td></tr>
+            <tr><th>尺寸</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'size')}}</td></tr>
+            <tr><th>分辨率</th><td v-for="(row, i) in choose">
+                <span v-if="phone[row].screen">{{phone[row].screen.resolution_x}} * {{phone[row].screen.resolution_y}}</span>
+                <span v-else>-</span>
+            </td></tr>
+            <tr><th>刷新率</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'refresh')}}</td></tr>
+            <tr><th>亮度</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'brightness')}}</td></tr>
+            <tr><th>色彩</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'color')}}</td></tr>
+            <tr><th>其他</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'other')}}</td></tr>
+            <tr><td><h2>电池</h2></td></tr>
+            <tr><th>容量</th><td v-for="(row, i) in choose">{{showObj(phone[row].battery, 'capacity')}}</td></tr>
+            <tr><th>充电</th><td v-for="(row, i) in choose">{{showObj(phone[row].battery, 'power')}}</td></tr>
+            <tr><td><h2>外观</h2></td></tr>
+            <tr><th>长度</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'size_x')}}</td></tr>
+            <tr><th>宽度</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'size_y')}}</td></tr>
+            <tr><th>厚度</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'size_z')}}</td></tr>
+            <tr><th>重量</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'weight')}}</td></tr>
+            <tr><th>材质</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'shell')}}</td></tr>
+            <tr><td><h2>功能</h2></td></tr>
+            <tr><th>接口</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'interface')}}</td></tr>
+            <tr><th>无线</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'wlan')}}</td></tr>
+            <tr><th>NFC</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'nfc')}}</td></tr>
+            <tr><td><h2>相机</h2></td></tr>
+            <tr><th>镜头</th><td v-for="(row, i) in choose">{{phone[row].camera || '-'}}</td></tr>
+            
+        </tbody>
+    </table>
+   <div >
+        {{k}}
+   </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.4/vue.global.min.js"></script>
+<script src="https://resource.liuyao.link/js/my/util.js"></script>
+
+<script>
+    const defObj = {
+        "price": {},
+        "screen": {
+            "type": "-",
+            "size": 0,
+            "resolution": [0, 0],
+            "refresh": 0,
+            "brightness": "",
+            "color": "",
+            "other": ""
+        },
+        "interface": "",
+        "battery": {
+            "capacity": "-",
+            "power": "-"
+        },
+        "appearance": {
+            "size": "-",
+            "weight": "-",
+            "shell": ""
+        },
+        "function": {
+            "wlan": "-",
+            "nfc": false
+        }
+    };
+    const {createApp} = Vue;
+    const vm = createApp({
+        data() {
+            return {
+                choose: [],
+                /**
+                "Nova14": {
+                    "cpu": "",
+                    "model": "TLR-AL00",
+                    "time": "2025年5月",
+                    "price": {
+                        "12+256G": 2699,
+                        "12+512G": 2999,
+                        "12+512G昆仑玻璃": 3199
+                    },
+                    "screen": {
+                        "type": "OLED",
+                        "size": 6.7,
+                        "resolution": [2412, 1084],
+                        "refresh": 120,
+                        "brightness": "",
+                        "color": "10.7 亿色，P3 广色域",
+                        "other": "可选昆仑玻璃"
+                    },
+                    "interface": "支持 USB 2.0",
+                    "battery": {
+                        "capacity": 5500,
+                        "power": "100W有线充电"
+                    },
+                    "appearance": {
+                        "size": "161.73x75.48x7.18mm",
+                        "weight": "192g",
+                        "shell": ""
+                    },
+                    "function": {
+                        "wlan": "wifi6",
+                        "nfc": true
+                    }
+                },
+                 */
+                cpu: {},
+                phone: {},
+                pad: {},
+            };
+        },
+        async created() {
+            let cpu = await this.getJsonFile('cpu.json');
+            let phone = await this.getJsonFile('phone.json');
+            let pad = await this.getJsonFile('pad.json');
+
+            this.phone = phone;
+            this.pad = pad;
+            this.cpu = cpu;
+            this.choose.push("Nova14");
+            this.choose.push("Nova14 Pro");
+            this.choose.push("Nova14 Ultra");
+        },
+        methods: {
+            async getJsonFile(path) {
+                return JSON.parse(await fetchTextFile(path));
+            },
+            showObj(obj, k) {
+                return obj && obj[k] ? obj[k] : '-';
+            }
+        }
+    }).mount('#app');
+
+
+    // 检查页面是否由 iframe 引用
+    if (window.self === window.top) {
+        document.body.style.backgroundColor = '#2e3133';
+    }
+</script>
+</body>
+</html>

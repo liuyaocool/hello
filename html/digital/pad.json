@@ -1,0 +1,113 @@
+{
+    "小米Pad 7 Pro": {
+        "cpu": "高通 骁龙8S Gen3",
+        "time": "2024年10月",
+        "screen": {
+            "type": "LCD",
+            "size": 11.2,
+            "resolution": [3200, 2136],
+            "refresh": 144,
+            "brightness": "800nits",
+            "color": ""
+        },
+        "interface": "USB3.2 Gen1",
+        "battery": {
+            "capacity": 8850,
+            "power": "67W有线闪充"
+        },
+        "appearance": {
+            "size": "251.2×173.42×6.18mm",
+            "weight": "500g",
+            "shell": ""
+        },
+        "function": {
+            
+        }
+    },
+    "MatePad Pro 13.2 2025典藏版": {
+        "cpu": "麒麟9020"
+    },
+    "MatePad Pro 13.2 2025": {
+        "cpu": "麒麟T92",
+        "model": "WEB-AL10"
+    },
+    "MatePad Pro 13.2 2025柔光版": {
+        "cpu": "麒麟T92"
+    },
+    "MatePad Pro13.2典藏版": {
+        "cpu": "麒麟9000S"
+    },
+    "MatePad Pro 13.2 5G": {
+        "cpu": "麒麟9000S"
+    },
+    "MatePad Pro 13.2": {
+        "cpu": "麒麟9000W/T90"
+    },
+    "MatePad Pro 12.2流金典藏版 5G": {
+        "cpu": "麒麟9010E"
+    },
+    "MatePad Pro 12.2 5G": {
+        "cpu": "麒麟9010E"
+    },
+    "MatePad Pro 12.2": {
+        "cpu": "麒麟9010W/T91"
+    },
+    "MatePad Pro 12.2柔光版": {
+        "cpu": "麒麟9010W/T91"
+    },
+    "MatePad Pro 12.2流金典藏版": {
+        "cpu": "麒麟9010W/T91"
+    },
+    "MatePad 12X": {
+        "cpu": "麒麟9000W/T90"
+    },
+    "MatePad Air 2024柔光版 后期款": {
+        "cpu": "麒麟9010W/T91"
+    },
+    "MatePad Air 2024 后期款": {
+        "cpu": "麒麟T91A"
+    },
+    "MatePad Air 2024": {
+        "cpu": "麒麟9000W/T90"
+    },
+    "MatePad Air 2024柔光版": {
+        "cpu": "麒麟9000W/T90"
+    },
+    "MatePad Air 2024 8GB": {
+        "cpu": "麒麟9000WE/T90A"
+    },
+    "MatePad Pro 11 2024": {
+        "cpu": "麒麟9000W/T90"
+    },
+    "MatePad 11.5S柔光版 后期款12GB": {
+        "cpu": "麒麟T91B",
+        "model": "TGR-W10"
+    },
+    "MatePad 11.5S 后期款": {
+        "cpu": "麒麟T91C"
+    },
+    "MatePad 11.5S灵动版 后期款": {
+        "cpu": "麒麟T91C"
+    },
+    "MatePad 11.5S柔光版 12GB": {
+        "cpu": "麒麟9000WE/T90A"
+    },
+    "MatePad 11.5S柔光版": {
+        "cpu": "麒麟9000WL",
+        "model": "DMG-W00"
+    },
+    "MatePad 11.5S": {
+        "cpu": "麒麟9000WM"
+    },
+    "MatePad 11.5S灵动版": {
+        "cpu": "麒麟9000WM"
+    },
+    "MatePad 11.5 2024": {
+        "cpu": "麒麟T80",
+        "model": "BTKR-W00"
+    },
+    "MatePad 11.5 2024柔光版": {
+        "cpu": "麒麟T80",
+        "model": "BTKR-W00"
+    }
+}
