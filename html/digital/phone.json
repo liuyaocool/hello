@@ -32,6 +32,7 @@
         "function": {
             "interface": "支持 USB 2.0",
             "wlan": "wifi6",
+            "nearlink": false,
             "nfc": true
         }
     },
@@ -68,6 +69,7 @@
         "function": {
             "interface": "支持 USB 2.0",
             "wlan": "wifi7",
+            "nearlink": false,
             "nfc": true
         },
         "camera": "红枫原色镜头"
@@ -105,6 +107,7 @@
         "function": {
             "interface": "支持 USB 2.0",
             "wlan": "wifi7",
+            "nearlink": false,
             "nfc": true
         },
         "camera": "红枫原色镜头"

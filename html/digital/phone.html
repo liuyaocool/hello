@@ -15,7 +15,7 @@
         table td {
             padding: 2px 10px;
             /* 不换行 */
-            /* white-space: nowrap; */
+            white-space: nowrap;
         }
         table th {
             vertical-align: top;
@@ -69,6 +69,7 @@
             <tr><td><h2>功能</h2></td></tr>
             <tr><th>接口</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'interface')}}</td></tr>
             <tr><th>无线</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'wlan')}}</td></tr>
+            <tr><th>星闪</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'nearlink')}}</td></tr>
             <tr><th>NFC</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'nfc')}}</td></tr>
             <tr><td><h2>相机</h2></td></tr>
             <tr><th>镜头</th><td v-for="(row, i) in choose">{{phone[row].camera || '-'}}</td></tr>
@@ -83,32 +84,6 @@
 <script src="https://resource.liuyao.link/js/my/util.js"></script>
 
 <script>
-    const defObj = {
-        "price": {},
-        "screen": {
-            "type": "-",
-            "size": 0,
-            "resolution": [0, 0],
-            "refresh": 0,
-            "brightness": "",
-            "color": "",
-            "other": ""
-        },
-        "interface": "",
-        "battery": {
-            "capacity": "-",
-            "power": "-"
-        },
-        "appearance": {
-            "size": "-",
-            "weight": "-",
-            "shell": ""
-        },
-        "function": {
-            "wlan": "-",
-            "nfc": false
-        }
-    };
     const {createApp} = Vue;
     const vm = createApp({
         data() {
@@ -170,8 +145,15 @@
             async getJsonFile(path) {
                 return JSON.parse(await fetchTextFile(path));
             },
-            showObj(obj, k) {
-                return obj && obj[k] ? obj[k] : '-';
+            showObj(obj, k) {                
+                let ret = !this.isNul(obj) && !this.isNul(obj[k]) ? obj[k] : '';
+                // if (k == 'nearlink') {
+                    // console.log(`${ret} :: ${obj ? obj[k] : 'empty'} / ${k} :: ${this.isNul(obj)} / ${this.isNul(obj[k])}`);                    
+                // }
+                return typeof ret == 'boolean' ? (ret ? '√' : '✗') : (ret || '-');
+            },
+            isNul(data) {
+                return null == data || undefined == data;
             }
         }
     }).mount('#app');
