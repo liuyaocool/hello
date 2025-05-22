@@ -23,9 +23,9 @@
             "power": "100W有线充电"
         },
         "appearance": {
-            "size_x": "161.73",
-            "size_y": "75.48",
-            "size_z": "7.18",
+            "size_x": 161.73,
+            "size_y": 75.48,
+            "size_z": 7.18,
             "weight": 192,
             "shell": ""
         },
@@ -60,9 +60,9 @@
             "power": "100W有线充电"
         },
         "appearance": {
-            "size_x": "163.4",
-            "size_y": "75.0",
-            "size_z": "7.68",
+            "size_x": 163.4,
+            "size_y": 75.0,
+            "size_z": 7.68,
             "weight": 207,
             "shell": ""
         },
@@ -98,9 +98,9 @@
             "power": "100W有线充电"
         },
         "appearance": {
-            "size_x": "163.4",
-            "size_y": "75.6",
-            "size_z": "7.78",
+            "size_x": 163.4,
+            "size_y": 75.6,
+            "size_z": 7.78,
             "weight": 204,
             "shell": ""
         },
@@ -256,9 +256,9 @@
             "power": "40W有线"
         },
         "appearance": {
-            "size_x": "166.05",
-            "size_y": "76.58",
-            "size_z": "8.33",
+            "size_x": 166.05,
+            "size_y": 76.58,
+            "size_z": 8.33,
             "weight": 206,
             "shell": ""
         },
@@ -269,7 +269,40 @@
     },
     "畅享70X": {
         "cpu": "麒麟8000A",
-        "model": "BRE-AL80"
+        "model": "BRE-AL80",        
+        "time": "2025年1月",
+        "price": {
+            "128G": 1799,
+            "256G": 1999,
+            "512G": 2299
+        },
+        "screen": {
+            "type": "AMOLED",
+            "size": 6.78,
+            "resolution_x": 2700,
+            "resolution_y": 1224,
+            "refresh": 120,
+            "brightness": "",
+            "color": "",
+            "other": ""
+        },
+        "battery": {
+            "capacity": 6000,
+            "power": "40W有线"
+        },
+        "appearance": {
+            "size_x": 164.0,
+            "size_y": 74.88,
+            "size_z": 8.13,
+            "weight": 193,
+            "shell": ""
+        },
+        "function": {
+            "interface": "支持 USB 2.0",
+            "wlan": "wifi5",
+            "nearlink": false,
+            "nfc": true
+        }
     },
     "畅享 70X 活力": {
         "cpu": "",
@@ -297,9 +330,9 @@
             "power": "120w有线充电"
         },
         "appearance": {
-            "size_x": "164.58",
-            "size_y": "75.8",
-            "size_z": "8.79",
+            "size_x": 164.58,
+            "size_y": 75.8,
+            "size_z": 8.79,
             "weight": 200,
             "shell": "塑料中框"
         },
@@ -328,11 +361,11 @@
             "power": "22.5w有线充电"
         },
         "appearance": {
-            "size_x": "163.7",
-            "size_y": "76.5",
-            "size_z": "8.8",
+            "size_x": 163.7,
+            "size_y": 76.5,
+            "size_z": 8.8,
             "weight": 203,
-            "shell": "塑料中框 塑料后壳"
+            "shell": "塑料中框 玻璃后壳"
         },
         "function": {
             "interface": "3.5mm耳机接口",

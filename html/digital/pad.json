@@ -24,17 +24,17 @@
             
         }
     },
-    "MatePad Pro 13.2 2025典藏版": {
+    "MatePad Pro 13.2 2025典藏": {
         "cpu": "麒麟9020"
     },
     "MatePad Pro 13.2 2025": {
         "cpu": "麒麟T92",
         "model": "WEB-AL10"
     },
-    "MatePad Pro 13.2 2025柔光版": {
+    "MatePad Pro 13.2 2025柔光": {
         "cpu": "麒麟T92"
     },
-    "MatePad Pro13.2典藏版": {
+    "MatePad Pro13.2典藏": {
         "cpu": "麒麟9000S"
     },
     "MatePad Pro 13.2 5G": {
@@ -43,7 +43,7 @@
     "MatePad Pro 13.2": {
         "cpu": "麒麟9000W/T90"
     },
-    "MatePad Pro 12.2流金典藏版 5G": {
+    "MatePad Pro 12.2流金典藏 5G": {
         "cpu": "麒麟9010E"
     },
     "MatePad Pro 12.2 5G": {
@@ -52,25 +52,25 @@
     "MatePad Pro 12.2": {
         "cpu": "麒麟9010W/T91"
     },
-    "MatePad Pro 12.2柔光版": {
+    "MatePad Pro 12.2柔光": {
         "cpu": "麒麟9010W/T91"
     },
-    "MatePad Pro 12.2流金典藏版": {
+    "MatePad Pro 12.2流金典藏": {
         "cpu": "麒麟9010W/T91"
     },
     "MatePad 12X": {
         "cpu": "麒麟9000W/T90"
     },
-    "MatePad Air 2024柔光版 后期款": {
+    "MatePad Air 2024柔光 后期": {
         "cpu": "麒麟9010W/T91"
     },
-    "MatePad Air 2024 后期款": {
+    "MatePad Air 2024 后期": {
         "cpu": "麒麟T91A"
     },
     "MatePad Air 2024": {
         "cpu": "麒麟9000W/T90"
     },
-    "MatePad Air 2024柔光版": {
+    "MatePad Air 2024柔光": {
         "cpu": "麒麟9000W/T90"
     },
     "MatePad Air 2024 8GB": {
@@ -79,34 +79,28 @@
     "MatePad Pro 11 2024": {
         "cpu": "麒麟9000W/T90"
     },
-    "MatePad 11.5S柔光版 后期款12GB": {
+    "MatePad 11.5S 柔光12G 后期": {
         "cpu": "麒麟T91B",
         "model": "TGR-W10"
     },
-    "MatePad 11.5S 后期款": {
+    "MatePad 11.5S 灵动 后期": {
         "cpu": "麒麟T91C"
     },
-    "MatePad 11.5S灵动版 后期款": {
-        "cpu": "麒麟T91C"
-    },
-    "MatePad 11.5S柔光版 12GB": {
+    "MatePad 11.5S 柔光12G": {
         "cpu": "麒麟9000WE/T90A"
     },
-    "MatePad 11.5S柔光版": {
+    "MatePad 11.5S 柔光": {
         "cpu": "麒麟9000WL",
         "model": "DMG-W00"
     },
-    "MatePad 11.5S": {
-        "cpu": "麒麟9000WM"
-    },
-    "MatePad 11.5S灵动版": {
+    "MatePad 11.5S 灵动": {
         "cpu": "麒麟9000WM"
     },
     "MatePad 11.5 2024": {
         "cpu": "麒麟T80",
         "model": "BTKR-W00"
     },
-    "MatePad 11.5 2024柔光版": {
+    "MatePad 11.5 2024柔光": {
         "cpu": "麒麟T80",
         "model": "BTKR-W00"
     }

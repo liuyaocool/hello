@@ -34,7 +34,12 @@
 </head>
 <body>
 <div id="app">
-    <label v-for="(v, k) in phone"><input type="checkbox" name="name" v-model="choose" :value="k">{{k}}</label>
+    <span v-for="(v, k) in phone">
+        <label v-if="v.screen">
+            <input type="checkbox" name="name" v-model="choose" :value="k">
+            {{k}}
+        </label>
+    </span>
 
     <table>
         <tbody>
