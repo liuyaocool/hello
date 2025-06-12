@@ -39,8 +39,8 @@
         .phone_size {
             position: relative;
             background-color: #515151;
-            font-size: 10px;
-            color: gray;
+            font-size: 12px;
+            color: #a09e9e;
             border-radius: 8px;
             user-select: none;
         }
@@ -99,7 +99,7 @@
             <tr><td><h2>外观</h2></td></tr>
             <tr><th>长宽</th><td v-for="(row, i) in choose" style="vertical-align: bottom;">
                 <div class="phone_size" v-if="phone[row].appearance" 
-                    :style="{width: phone[row].appearance.x+'px', height: phone[row].appearance.y+'px'}">
+                    :style="{width: Math.round(phone[row].appearance.x * 2)+'px', height: Math.round(phone[row].appearance.y * 2 ) + 'px'}">
                     <div class="phone_size_x">{{phone[row].appearance.x}}</div>
                     <div class="phone_size_y">{{phone[row].appearance.y}}</div>
                 </div>
