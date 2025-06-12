@@ -1,0 +1,33 @@
+{
+    "荣耀 X10": {
+        "cpu": "麒麟820",
+        "model": "TEL-AN10",
+        "time": "2020年5月",
+        "screen": {
+            "type": "LCD",
+            "size": 6.63,
+            "resolution_x": 2400,
+            "resolution_y": 1080,
+            "refresh": 90,
+            "brightness": "",
+            "color": "1670万色",
+            "other": "莱茵TUV低蓝光护眼认证"
+        },
+        "battery": {
+            "capacity": 4300,
+            "power": "22.5w有线充电"
+        },
+        "appearance": {
+            "y": 163.7,
+            "x": 76.5,
+            "z": 8.8,
+            "weight": 203,
+            "shell": "塑料中框 玻璃后壳"
+        },
+        "function": {
+            "interface": "3.5mm耳机接口",
+            "wlan": "WiFi5",
+            "nfc": false
+        }
+    }
+}

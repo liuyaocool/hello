@@ -1,0 +1,37 @@
+{
+    "一加13T": {
+        "cpu": "骁龙8至尊版移动平台",
+        "model": "",
+        "time": "",
+        "price": {
+        },
+        "screen": {
+            "type": "OLED",
+            "size": 6.32,
+            "y": 2640,
+            "x": 1216,
+            "refresh": 120,
+            "brightness": "800尼特, 激发1600",
+            "color": "10.7亿色; 自然模式: 100% DCI-P3; 专业模式: 100% DCI-P3; 鲜明模式: 100% DCI-P3",
+            "other": "护眼模式，舒眠模式，全亮度低频闪，护眼提醒，太阳显示，降低白点值，游戏色彩增强"
+        },
+        "battery": {
+            "capacity": 6260,
+            "power": "80w有线充电"
+        },
+        "appearance": {
+            "y": 150.81,
+            "x": 71.70,
+            "z": 8.15,
+            "weight": 185,
+            "shell": "铝合金中框,玻璃后壳"
+        },
+        "function": {
+            "interface": "USB Type-C 2.0",
+            "wlan": "WiFi7",
+            "nfc": true,
+            "ipxx": "IP65级防尘防水"
+        }
+    }
+
+}

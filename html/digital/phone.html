@@ -5,6 +5,10 @@
     <title>phone</title>
     <link rel="stylesheet" href="../../css/theme.css"/>
     <style>
+        :root {
+            --th-width: 66px;
+            --td-width: 150px;
+        }
         #app {
             padding: 10px 8px;
         }
@@ -15,7 +19,9 @@
         table td {
             padding: 2px 10px;
             /* 不换行 */
-            white-space: nowrap;
+            /* white-space: nowrap; */
+            max-width: 150px;
+            vertical-align: top;
         }
         table th {
             vertical-align: top;
@@ -30,6 +36,28 @@
         h2 {
             margin: 8px 0px;
         }
+        .phone_size {
+            position: relative;
+            background-color: #515151;
+            font-size: 10px;
+            color: gray;
+            border-radius: 8px;
+            user-select: none;
+        }
+        .phone_size_x {
+            text-align: center;
+            position: absolute;
+            width: 100%;
+        }
+  
+        .phone_size_y {
+            height: 100%;
+            text-align: left;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+        }
+  
     </style>
 </head>
 <body>
@@ -51,31 +79,42 @@
             <tr><th>价格</th><td v-for="(row, i) in choose">
                 <span v-for="(v, k) in phone[row].price">{{v}}（{{k}}）<br></span>
             </td></tr>
+            
             <tr><td><h2>屏幕</h2></td></tr>
             <tr><th>类型</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'type')}}</td></tr>
             <tr><th>尺寸</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'size')}}</td></tr>
             <tr><th>分辨率</th><td v-for="(row, i) in choose">
-                <span v-if="phone[row].screen">{{phone[row].screen.resolution_x}} * {{phone[row].screen.resolution_y}}</span>
+                <span v-if="phone[row].screen">{{phone[row].screen.y}} * {{phone[row].screen.x}}</span>
                 <span v-else>-</span>
             </td></tr>
             <tr><th>刷新率</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'refresh')}}</td></tr>
             <tr><th>亮度</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'brightness')}}</td></tr>
             <tr><th>色彩</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'color')}}</td></tr>
             <tr><th>其他</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'other')}}</td></tr>
+            
             <tr><td><h2>电池</h2></td></tr>
             <tr><th>容量</th><td v-for="(row, i) in choose">{{showObj(phone[row].battery, 'capacity')}}</td></tr>
             <tr><th>充电</th><td v-for="(row, i) in choose">{{showObj(phone[row].battery, 'power')}}</td></tr>
+            
             <tr><td><h2>外观</h2></td></tr>
-            <tr><th>长度</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'size_x')}}</td></tr>
-            <tr><th>宽度</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'size_y')}}</td></tr>
-            <tr><th>厚度</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'size_z')}}</td></tr>
+            <tr><th>长宽</th><td v-for="(row, i) in choose" style="vertical-align: bottom;">
+                <div class="phone_size" v-if="phone[row].appearance" 
+                    :style="{width: phone[row].appearance.x+'px', height: phone[row].appearance.y+'px'}">
+                    <div class="phone_size_x">{{phone[row].appearance.x}}</div>
+                    <div class="phone_size_y">{{phone[row].appearance.y}}</div>
+                </div>
+                <span v-else="phone[row].appearance">-</span>
+            </td></tr>
+            <tr><th>厚度</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'z')}}</td></tr>
             <tr><th>重量</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'weight')}}</td></tr>
             <tr><th>材质</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'shell')}}</td></tr>
+            
             <tr><td><h2>功能</h2></td></tr>
             <tr><th>接口</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'interface')}}</td></tr>
             <tr><th>无线</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'wlan')}}</td></tr>
             <tr><th>星闪</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'nearlink')}}</td></tr>
             <tr><th>NFC</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'nfc')}}</td></tr>
+            
             <tr><td><h2>相机</h2></td></tr>
             <tr><th>镜头</th><td v-for="(row, i) in choose">{{phone[row].camera || '-'}}</td></tr>
             
@@ -136,9 +175,16 @@
         },
         async created() {
             let cpu = await this.getJsonFile('cpu.json');
-            let phone = await this.getJsonFile('phone.json');
             let pad = await this.getJsonFile('pad.json');
 
+            let phone = {};
+            let phoneList = ['huawei.json', 'honor.json', 'oppo.json', 'vivo.json'];
+            for (let i = 0, tmp; i < phoneList.length; i++) {
+                tmp = await this.getJsonFile('phone/' + phoneList[i]);
+                for(let k in tmp) {
+                    phone[k] = tmp[k];
+                }
+            }
             this.phone = phone;
             this.pad = pad;
             this.cpu = cpu;

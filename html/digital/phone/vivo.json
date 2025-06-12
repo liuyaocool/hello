@@ -1,0 +1,31 @@
+{
+    "vivo Y100t": {
+        "cpu": "天玑8200",
+        "time": "2024年2月",
+        "screen": {
+            "type": "LCD",
+            "size": 6.64,
+            "y": 2388,
+            "x": 1080,
+            "refresh": 120,
+            "brightness": "650nit",
+            "color": ""
+        },
+        "battery": {
+            "capacity": 5000,
+            "power": "120w有线充电"
+        },
+        "appearance": {
+            "y": 164.58,
+            "x": 75.8,
+            "z": 8.79,
+            "weight": 200,
+            "shell": "塑料中框"
+        },
+        "function": {
+            "interface": "3.5mm耳机接口",
+            "wlan": "WiFi6",
+            "nfc": true
+        }
+    }
+}
