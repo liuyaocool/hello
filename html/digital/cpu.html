@@ -44,6 +44,7 @@
                 <td rowspan="2">名称</td>
                 <td colspan="4">cpu</td>
                 <td rowspan="2">gpu</td>
+                <td rowspan="2">ai</td>
                 <td colspan="2">geekbench6</td>
                 <td rowspan="2">使用机型</td>
             </tr>
@@ -62,6 +63,7 @@
                 <td v-for="(_, i) in [1,1,1]">{{showCpu(cpu[row].cpu, i)}}</td>
                 <td>{{cpu[row].process}}</td>
                 <td>{{cpu[row].gpu}}</td>
+                <td>{{cpu[row].ai}}</td>
                 <td>{{cpu[row].geekbench6 ? cpu[row].geekbench6[0] : '-' }}</td>
                 <td>{{cpu[row].geekbench6 ? cpu[row].geekbench6[1] : '-' }}</td>
                 <td v-html="cpu[row].use ? cpu[row].use.join('<br>') : '-'">{{cpu[row].use}}</td>
@@ -74,6 +76,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.4/vue.global.min.js"></script>
 <script src="https://resource.liuyao.link/js/my/util.js"></script>
+<script src="base.js"></script>
 
 <script>
     const {createApp} = Vue;
@@ -129,9 +132,9 @@
             },
         },
         async created() {
-            let cpu = await this.getJsonFile('cpu.json');
-            let phone = await this.getJsonFile('phone.json');
-            let pad = await this.getJsonFile('pad.json');
+            let cpu = await getJsonFile('cpu.json');
+            let phone = await getPhone();
+            let pad = await getJsonFile('pad.json');
             
             let fillCpuUse = function(data) {
                 let cpuu;
@@ -152,9 +155,6 @@
             this.defaultChoose();
         },
         methods: {
-            async getJsonFile(path) {
-                return JSON.parse(await fetchTextFile(path));
-            },
             defaultChoose() {
                 [
                     '麒麟9020'

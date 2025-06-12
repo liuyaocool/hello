@@ -6,8 +6,8 @@
         "screen": {
             "type": "LCD",
             "size": 6.63,
-            "resolution_x": 2400,
-            "resolution_y": 1080,
+            "y": 2400,
+            "x": 1080,
             "refresh": 90,
             "brightness": "",
             "color": "1670万色",
