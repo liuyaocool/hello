@@ -66,7 +66,10 @@
                 <td>{{cpu[row].ai}}</td>
                 <td>{{cpu[row].geekbench6 ? cpu[row].geekbench6[0] : '-' }}</td>
                 <td>{{cpu[row].geekbench6 ? cpu[row].geekbench6[1] : '-' }}</td>
-                <td v-html="cpu[row].use ? cpu[row].use.join('<br>') : '-'">{{cpu[row].use}}</td>
+                <td v-if="cpu[row].use" >
+                    <div style="white-space: nowrap;" v-for="(item ,i) in cpu[row].use">{{item}}</div>
+                </td>
+                <td v-else>-</td>
             </tr>
         </tbody>
     </table>
