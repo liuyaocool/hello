@@ -40,11 +40,12 @@ for (let i = 0; i < keyboards.length; i++) {
     }
     keyLineHtmls.push(keyLine);
 }
-document.body.innerHTML += keyLineHtmls.join('<br>');
+document.body.innerHTML = keyLineHtmls.join('<br>') + document.body.innerHTML;
 
 document.onkeydown = function (ev) {
-    // console.log(ev);
-    console.log(ev.code);
+    ev.preventDefault();
+    console.log(ev);
+    showMsg(`code: ${ev.code}<br>key: "${ev.key}"<br>keyCode: ${ev.keyCode}`);
     let style = document.getElementById(ev.code);
     if (!style) return;
     style = style.style;
@@ -56,9 +57,11 @@ document.onkeydown = function (ev) {
 }
 
 document.onkeyup = function (ev) {
-    // console.log(ev);
-    console.log(ev.code);
     let ele = document.getElementById(ev.code);
     if (!ele) return;
     ele.style.backgroundColor = '';
+}
+
+function showMsg(msg) {
+    document.getElementById('showMsg').innerHTML = msg;
 }
