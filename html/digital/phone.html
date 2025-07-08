@@ -40,7 +40,8 @@
         tbody th {
             max-width: var(--th-width);
             min-width: var(--th-width);
-            /* vertical-align: top; */
+            vertical-align: top;
+            padding: 4px 0;
         }
         tbody > tr > td:nth-child(2n+1) {
             background-color: #f0f0f00f;
@@ -188,6 +189,8 @@
             <tr><th>材质</th><td v-for="(row, i) in choose">{{phone[row].appearance.shell || defEmpty}}</td></tr>
             
             <tr><th><h2>功能</h2></th><td v-for="(row, i) in choose"></td></tr>
+            <tr><th>卫星</th><td v-for="(row, i) in choose">{{phone[row].function.satellite || defEmpty}}</td></tr>
+            <tr><th>指纹</th><td v-for="(row, i) in choose">{{phone[row].function.fingerprint || defEmpty}}</td></tr>
             <tr><th>接口</th><td v-for="(row, i) in choose">{{phone[row].function.interface || defEmpty}}</td></tr>
             <tr><th>无线</th><td v-for="(row, i) in choose">{{phone[row].function.wlan || defEmpty}}</td></tr>
             <tr><th>星闪</th><td v-for="(row, i) in choose">{{bol(phone[row].function.nearlink)}}</td></tr>
