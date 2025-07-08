@@ -11,22 +11,34 @@
         #app {
             padding: 10px 8px;
         }
+
+        thead {
+            position: sticky;  /* 关键属性 */
+            top: 0;            /* 距离顶部 0px 时固定 */
+            z-index: 10;       /* 确保表头在最上层 */
+            background: #5b585847;
+            backdrop-filter: blur(88px);
+            /* 可选：添加阴影增强视觉 */
+            /* box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);*/
+        }
+        thead > tr > td:nth-child(2n) {
+        }
         table {
             /* 表格间无间隙 */
             border-collapse: collapse;
         }
-        table td {
+        tbody td {
             padding: 4px 10px;
             /* 不换行 */
             /* white-space: nowrap; */
             vertical-align: top;
         }
-        table th {
+        tbody th {
             max-width: var(--th-width);
             min-width: var(--th-width);
             /* vertical-align: top; */
         }
-        tr >td:nth-child(2n+1) {
+        tbody > tr > td:nth-child(2n+1) {
             background-color: #f0f0f00f;
             backdrop-filter: blur(28px);
         }
