@@ -117,49 +117,49 @@
             <tr><th>类型</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div>{{phone[row].screen.type}}</div>
-                    <div v-if="phone[row].screen2">|{{phone[row].screen2.type}}</div>
+                    <div v-if="phone[row].screen2">| {{phone[row].screen2.type}}</div>
                 </div>
             </td></tr>
             <tr><th>材质</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div>{{phone[row].screen.material}}</div>
-                    <div v-if="phone[row].screen2">|{{phone[row].screen2.material}}</div>
+                    <div v-if="phone[row].screen2">| {{phone[row].screen2.material}}</div>
                 </div>
             </td></tr>
             <tr><th>尺寸</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div>{{phone[row].screen.size}}</div>
-                    <div v-if="phone[row].screen2">|{{phone[row].screen2.size}}</div>
+                    <div v-if="phone[row].screen2">| {{phone[row].screen2.size}}</div>
                 </div>
             </td></tr>
             <tr><th>分辨率</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div v-if="phone[row].screen">{{phone[row].screen.y}} * {{phone[row].screen.x}}</div>
-                    <div v-if="phone[row].screen2">|{{phone[row].screen2.y}} * {{phone[row].screen2.x}}</div>
+                    <div v-if="phone[row].screen2">| {{phone[row].screen2.y}} * {{phone[row].screen2.x}}</div>
                 </div>
             </td></tr>
             <tr><th>刷新率</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div>{{phone[row].screen.refresh}}</div>
-                    <div v-if="phone[row].screen2">|{{phone[row].screen2.refresh}}</div>
+                    <div v-if="phone[row].screen2">| {{phone[row].screen2.refresh}}</div>
                 </div>
             </td></tr>
             <tr><th>亮度</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div>{{phone[row].screen.brightness}}</div>
-                    <div v-if="phone[row].screen2">|{{phone[row].screen2.brightness}}</div>
+                    <div v-if="phone[row].screen2">| {{phone[row].screen2.brightness}}</div>
                 </div>
             </td></tr>
             <tr><th>色彩</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div>{{phone[row].screen.color}}</div>
-                    <div v-if="phone[row].screen2">|{{phone[row].screen2.color}}</div>
+                    <div v-if="phone[row].screen2">| {{phone[row].screen2.color}}</div>
                 </div>
             </td></tr>
             <tr><th>其他</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div>{{phone[row].screen.other || defEmpty}}</div>
-                    <div v-if="phone[row].screen2">|{{phone[row].screen2.other || defEmpty}}</div>
+                    <div v-if="phone[row].screen2">| {{phone[row].screen2.other || defEmpty}}</div>
                 </div>
             </td></tr>
             
@@ -181,7 +181,7 @@
             <tr><th>厚度</th><td v-for="(row, i) in choose">
                 <div class="multi_size">
                     <div>{{phone[row].appearance.z}}</div>
-                    <div v-if="phone[row].appearance2">|{{phone[row].appearance2.z}}</div>
+                    <div v-if="phone[row].appearance2">| {{phone[row].appearance2.z}}</div>
                 </div>
             </td></tr>
             <tr><th>重量</th><td v-for="(row, i) in choose">{{phone[row].appearance.weight || defEmpty}}</td></tr>
