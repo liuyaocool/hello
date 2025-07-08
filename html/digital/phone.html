@@ -6,25 +6,29 @@
     <link rel="stylesheet" href="../../css/theme.css"/>
     <style>
         :root {
-            --th-width: 66px;
-            --td-width: 150px;
+            --th-width: 69px;
         }
         #app {
             padding: 10px 8px;
         }
         table {
             /* 表格间无间隙 */
-            /* border-collapse: collapse; */
+            border-collapse: collapse;
         }
         table td {
-            padding: 2px 10px;
+            padding: 4px 10px;
             /* 不换行 */
             /* white-space: nowrap; */
-            max-width: 150px;
             vertical-align: top;
         }
         table th {
-            vertical-align: top;
+            max-width: var(--th-width);
+            min-width: var(--th-width);
+            /* vertical-align: top; */
+        }
+        tr >td:nth-child(2n+1) {
+            background-color: #f0f0f00f;
+            backdrop-filter: blur(28px);
         }
 
         label {
@@ -50,13 +54,19 @@
             position: absolute;
             width: 100%;
         }
-  
         .phone_size_y {
             height: 100%;
             text-align: left;
             display: flex;
             /* justify-content: center; */
             align-items: center;
+        }
+        .multi_size {
+            display: flex;
+        }
+        .multi_size > * {
+            /* 平分宽度 */
+            flex: 1; 
         }
   
     </style>
@@ -71,9 +81,11 @@
     </span>
 
     <table>
+        <thead>
+            <tr><th></th><td v-for="(row, i) in choose"><h2>{{row}}</h2></td></tr>
+        </thead>
         <tbody>
             <!-- <tr><td><h2>基本</h2></td></tr> -->
-            <tr><th></th><td v-for="(row, i) in choose"><h2>{{row}}</h2></td></tr>
             <tr><th>cpu</th><td v-for="(row, i) in choose">{{phone[row].cpu}}</td></tr>
             <tr><th>型号</th><td v-for="(row, i) in choose">{{phone[row].model}}</td></tr>
             <tr><th>上市时间</th><td v-for="(row, i) in choose">{{phone[row].time}}</td></tr>
@@ -81,43 +93,92 @@
                 <span v-for="(v, k) in phone[row].price">{{v}}（{{k}}）<br></span>
             </td></tr>
             
-            <tr><td><h2>屏幕</h2></td></tr>
-            <tr><th>类型</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'type')}}</td></tr>
-            <tr><th>尺寸</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'size')}}</td></tr>
-            <tr><th>分辨率</th><td v-for="(row, i) in choose">
-                <span v-if="phone[row].screen">{{phone[row].screen.y}} * {{phone[row].screen.x}}</span>
-                <span v-else>-</span>
-            </td></tr>
-            <tr><th>刷新率</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'refresh')}}</td></tr>
-            <tr><th>亮度</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'brightness')}}</td></tr>
-            <tr><th>色彩</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'color')}}</td></tr>
-            <tr><th>其他</th><td v-for="(row, i) in choose">{{showObj(phone[row].screen, 'other')}}</td></tr>
+            <tr><th><h2>电池</h2></th><td v-for="(row, i) in choose"></td></tr>
+            <tr><th>容量</th><td v-for="(row, i) in choose">{{phone[row].battery.capacity}}</td></tr>
+            <tr><th>充电</th><td v-for="(row, i) in choose">{{phone[row].battery.power}}</td></tr>
             
-            <tr><td><h2>电池</h2></td></tr>
-            <tr><th>容量</th><td v-for="(row, i) in choose">{{showObj(phone[row].battery, 'capacity')}}</td></tr>
-            <tr><th>充电</th><td v-for="(row, i) in choose">{{showObj(phone[row].battery, 'power')}}</td></tr>
-            
-            <tr><td><h2>外观</h2></td></tr>
-            <tr><th>长宽</th><td v-for="(row, i) in choose" style="vertical-align: bottom;">
-                <div class="phone_size" v-if="phone[row].appearance" 
-                    :style="{width: Math.round(phone[row].appearance.x * 2)+'px', height: Math.round(phone[row].appearance.y * 2 ) + 'px'}">
-                    <div class="phone_size_x">{{phone[row].appearance.x}}</div>
-                    <div class="phone_size_y">{{phone[row].appearance.y}}</div>
+            <tr><th><h2>屏幕</h2></th><td v-for="(row, i) in choose"></td></tr>
+            <tr><th>类型</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].screen.type}}</div>
+                    <div v-if="phone[row].screen2">|{{phone[row].screen2.type}}</div>
                 </div>
-                <span v-else="phone[row].appearance">-</span>
             </td></tr>
-            <tr><th>厚度</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'z')}}</td></tr>
-            <tr><th>重量</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'weight')}}</td></tr>
-            <tr><th>材质</th><td v-for="(row, i) in choose">{{showObj(phone[row].appearance, 'shell')}}</td></tr>
+            <tr><th>材质</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].screen.material}}</div>
+                    <div v-if="phone[row].screen2">|{{phone[row].screen2.material}}</div>
+                </div>
+            </td></tr>
+            <tr><th>尺寸</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].screen.size}}</div>
+                    <div v-if="phone[row].screen2">|{{phone[row].screen2.size}}</div>
+                </div>
+            </td></tr>
+            <tr><th>分辨率</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div v-if="phone[row].screen">{{phone[row].screen.y}} * {{phone[row].screen.x}}</div>
+                    <div v-if="phone[row].screen2">|{{phone[row].screen2.y}} * {{phone[row].screen2.x}}</div>
+                </div>
+            </td></tr>
+            <tr><th>刷新率</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].screen.refresh}}</div>
+                    <div v-if="phone[row].screen2">|{{phone[row].screen2.refresh}}</div>
+                </div>
+            </td></tr>
+            <tr><th>亮度</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].screen.brightness}}</div>
+                    <div v-if="phone[row].screen2">|{{phone[row].screen2.brightness}}</div>
+                </div>
+            </td></tr>
+            <tr><th>色彩</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].screen.color}}</div>
+                    <div v-if="phone[row].screen2">|{{phone[row].screen2.color}}</div>
+                </div>
+            </td></tr>
+            <tr><th>其他</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].screen.other || defEmpty}}</div>
+                    <div v-if="phone[row].screen2">|{{phone[row].screen2.other || defEmpty}}</div>
+                </div>
+            </td></tr>
             
-            <tr><td><h2>功能</h2></td></tr>
-            <tr><th>接口</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'interface')}}</td></tr>
-            <tr><th>无线</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'wlan')}}</td></tr>
-            <tr><th>星闪</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'nearlink')}}</td></tr>
-            <tr><th>NFC</th><td v-for="(row, i) in choose">{{showObj(phone[row].function, 'nfc')}}</td></tr>
+            <tr><th><h2>外观</h2></th><td v-for="(row, i) in choose"></td></tr>
+            <tr><th>长宽</th><td v-for="(row, i) in choose" style="vertical-align: bottom;">
+                <div style="align-items: flex-end; display: flex;">
+                    <div class="phone_size" v-if="phone[row].appearance"
+                        :style="{width: phone[row].appearance.x * 2 + 'px', height: phone[row].appearance.y * 2 + 'px'}">
+                        <div class="phone_size_x">{{phone[row].appearance.x}}</div>
+                        <div class="phone_size_y">{{phone[row].appearance.y}}</div>
+                    </div>
+                    <div class="phone_size" v-if="phone[row].appearance2" style="margin-left: 5px;"
+                        :style="{width: phone[row].appearance2.x * 2 + 'px', height: phone[row].appearance2.y * 2 + 'px'}">
+                        <div class="phone_size_x">{{phone[row].appearance2.x}}</div>
+                        <div class="phone_size_y">{{phone[row].appearance2.y}}</div>
+                    </div>
+                </div>
+            </td></tr>
+            <tr><th>厚度</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].appearance.z}}</div>
+                    <div v-if="phone[row].appearance2">|{{phone[row].appearance2.z}}</div>
+                </div>
+            </td></tr>
+            <tr><th>重量</th><td v-for="(row, i) in choose">{{phone[row].appearance.weight || defEmpty}}</td></tr>
+            <tr><th>材质</th><td v-for="(row, i) in choose">{{phone[row].appearance.shell || defEmpty}}</td></tr>
             
-            <tr><td><h2>相机</h2></td></tr>
-            <tr><th>镜头</th><td v-for="(row, i) in choose">{{phone[row].camera || '-'}}</td></tr>
+            <tr><th><h2>功能</h2></th><td v-for="(row, i) in choose"></td></tr>
+            <tr><th>接口</th><td v-for="(row, i) in choose">{{phone[row].function.interface || defEmpty}}</td></tr>
+            <tr><th>无线</th><td v-for="(row, i) in choose">{{phone[row].function.wlan || defEmpty}}</td></tr>
+            <tr><th>星闪</th><td v-for="(row, i) in choose">{{bol(phone[row].function.nearlink)}}</td></tr>
+            <tr><th>NFC</th><td v-for="(row, i) in choose">{{bol(phone[row].function.nfc)}}</td></tr>
+            
+            <tr><th><h2>相机</h2></th><td v-for="(row, i) in choose"></td></tr>
+            <tr><th>镜头</th><td v-for="(row, i) in choose">{{phone[row].camera || defEmpty}}</td></tr>
             
         </tbody>
     </table>
@@ -134,66 +195,90 @@
     const vm = createApp({
         data() {
             return {
+                defEmpty: '-',
                 choose: [],
                 /**
-                "Nova14": {
-                    "cpu": "",
-                    "model": "TLR-AL00",
+                "Pura X": {
+                    "style": {
+                        td_width: "",
+                        screen1_width: "",
+
+                    },
+                    "cpu": "麒麟9020",
+                    "model": "VDE-AL00",
                     "time": "2025年5月",
                     "price": {
-                        "12+256G": 2699,
-                        "12+512G": 2999,
-                        "12+512G昆仑玻璃": 3199
+                        "12+256G": 7499,
+                        "12+512G": 7999,
+                        "16+512G典藏": 8999,
+                        "16+1T典藏": 9999
                     },
                     "screen": {
-                        "type": "OLED",
-                        "size": 6.7,
-                        "resolution": [2412, 1084],
+                        "type": "柔性OLED",
+                        "material": "UTG玻璃",
+                        "size": 6.3,
+                        "y": 2120,
+                        "x": 1320,
                         "refresh": 120,
-                        "brightness": "",
+                        "brightness": "-",
                         "color": "10.7 亿色，P3 广色域",
-                        "other": "可选昆仑玻璃"
+                        "other": ""
                     },
-                    "interface": "支持 USB 2.0",
+                    "screen2": {
+                        "type": "OLED",
+                        "material": "铝硅玻璃",
+                        "size": 3.5,
+                        "y": 980,
+                        "x": 980,
+                        "refresh": 120,
+                        "brightness": "-",
+                        "color": "10.7 亿色，P3 广色域",
+                        "other": ""
+                    },
                     "battery": {
-                        "capacity": 5500,
-                        "power": "100W有线充电"
+                        "capacity": 4720,
+                        "power": "66W有线充电，40W无线充电，5W有线反向充电"
                     },
                     "appearance": {
-                        "size": "161.73x75.48x7.18mm",
-                        "weight": "192g",
-                        "shell": ""
+                        "y": 143.2,
+                        "x": 91.7,
+                        "z": 7.15,
+                        "weight": 195.9,
+                        "shell": "玻璃，素皮"
+                    },
+                    "appearance2": {
+                        "y": 74.3,
+                        "x": 91.7,
+                        "z": 15.1
                     },
                     "function": {
-                        "wlan": "wifi6",
+                        "satellite": "天通卫星通信(典藏版)",
+                        "interface": "USB 3.1 Gen 1",
+                        "fingerprint": "侧边指纹",
+                        "wlan": "wifi7",
+                        "nearlink": true,
                         "nfc": true
-                    }
+                    },
+                    "camera": "红枫原色镜头"
                 },
                  */
                 cpu: {},
                 phone: {},
-                pad: {},
             };
         },
         async created() {
             let cpu = await getJsonFile('cpu.json');
-            let pad = await getJsonFile('pad.json');
             let phone = await getPhone();
 
             this.phone = phone;
-            this.pad = pad;
             this.cpu = cpu;
-            this.choose.push("Nova 14");
+            this.choose.push("Pura X");
             this.choose.push("Nova 14 Pro");
             this.choose.push("Nova 14 Ultra");
         },
         methods: {
-            showObj(obj, k) {                
-                let ret = !this.isNul(obj) && !this.isNul(obj[k]) ? obj[k] : '';
-                // if (k == 'nearlink') {
-                    // console.log(`${ret} :: ${obj ? obj[k] : 'empty'} / ${k} :: ${this.isNul(obj)} / ${this.isNul(obj[k])}`);                    
-                // }
-                return typeof ret == 'boolean' ? (ret ? '√' : '✗') : (ret || '-');
+            bol(obj) {
+                return typeof obj == 'boolean' ? (obj ? '√' : '✗') : this.defEmpty;
             },
             isNul(data) {
                 return null == data || undefined == data;

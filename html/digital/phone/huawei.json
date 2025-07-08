@@ -1,4 +1,62 @@
 {
+    "Pura X": {
+        "cpu": "麒麟9020",
+        "model": "VDE-AL00",
+        "time": "2025年5月",
+        "price": {
+            "12+256G": 7499,
+            "12+512G": 7999,
+            "16+512G典藏": 8999,
+            "16+1T典藏": 9999
+        },
+        "screen": {
+            "type": "柔性OLED",
+            "material": "UTG玻璃",
+            "size": 6.3,
+            "y": 2120,
+            "x": 1320,
+            "refresh": 120,
+            "brightness": "-",
+            "color": "10.7 亿色，P3 广色域",
+            "other": ""
+        },
+        "screen2": {
+            "type": "OLED",
+            "material": "铝硅玻璃",
+            "size": 3.5,
+            "y": 980,
+            "x": 980,
+            "refresh": 120,
+            "brightness": "-",
+            "color": "10.7 亿色，P3 广色域",
+            "other": ""
+        },
+        "battery": {
+            "capacity": 4720,
+            "power": "66W有线充电，40W无线充电，5W有线反向充电"
+        },
+        "appearance": {
+            "y": 143.2,
+            "x": 91.7,
+            "z": 7.15,
+            "weight": 195.9,
+            "shell": "玻璃，素皮"
+        },
+        "appearance2": {
+            "y": 74.3,
+            "x": 91.7,
+            "z": 15.1
+        },
+        "function": {
+            "satellite": "天通卫星通信(典藏版)",
+            "interface": "USB 3.1 Gen 1",
+            "fingerprint": "侧边指纹",
+            "wlan": "wifi7",
+            "nearlink": true,
+            "nfc": true
+        },
+        "camera": "红枫原色镜头"
+    },
     "Nova 14": {
         "cpu": "麒麟8000新芯",
         "model": "TLR-AL00",
@@ -10,11 +68,12 @@
         },
         "screen": {
             "type": "OLED",
+            "material": "铝硅玻璃",
             "size": 6.7,
             "y": 2412,
             "x": 1084,
             "refresh": 120,
-            "brightness": "",
+            "brightness": "1100nits",
             "color": "10.7 亿色，P3 广色域",
             "other": ""
         },
@@ -30,7 +89,9 @@
             "shell": ""
         },
         "function": {
+            "satellite": "双向北斗卫星消息",
             "interface": "支持 USB 2.0",
+            "fingerprint": "侧边指纹",
             "wlan": "wifi6",
             "nearlink": false,
             "nfc": true
@@ -47,11 +108,12 @@
         },
         "screen": {
             "type": "OLED",
+            "material": "铝硅玻璃",
             "size": 6.78,
             "y": 2776,
             "x": 1224,
             "refresh": 120,
-            "brightness": "",
+            "brightness": "1200nits",
             "color": "10.7 亿色，P3 广色域",
             "other": ""
         },
@@ -67,9 +129,11 @@
             "shell": ""
         },
         "function": {
+            "satellite": "双向北斗卫星消息",
             "interface": "支持 USB 2.0",
+            "fingerprint": "侧边指纹",
             "wlan": "wifi7",
-            "nearlink": false,
+            "nearlink": true,
             "nfc": true
         },
         "camera": "红枫原色镜头"
@@ -85,11 +149,12 @@
         },
         "screen": {
             "type": "OLED",
+            "material": "昆仑玻璃",
             "size": 6.81,
             "y": 2860,
             "x": 1272,
             "refresh": 120,
-            "brightness": "",
+            "brightness": "5500nits",
             "color": "10.7 亿色，P3 广色域",
             "other": ""
         },
@@ -105,20 +170,14 @@
             "shell": ""
         },
         "function": {
+            "satellite": "天通卫星通话，双向北斗卫星消息",
             "interface": "支持 USB 2.0",
+            "fingerprint": "侧边指纹",
             "wlan": "wifi7",
-            "nearlink": false,
+            "nearlink": true,
             "nfc": true
         },
         "camera": "红枫原色镜头"
-    },
-    "Pura X典藏": {
-        "cpu": "麒麟9020",
-        "model": "VDE-AL00"
-    },
-    "Pura X": {
-        "cpu": "麒麟9020",
-        "model": "VDE-AL00"
     },
     "Mate X6典藏": {
         "cpu": "麒麟9020",
@@ -239,7 +298,7 @@
         "model": "BLK-AL00"
     },
     "畅享80": {
-        "cpu": "",
+        "cpu": "麒麟710A",
         "titme": "2025年4月",
         "model": "JUY-AL00",
         "screen": {
@@ -247,9 +306,9 @@
             "size": 6.67,
             "y": 1604,
             "x": 720,
-            "refresh": 0,
-            "brightness": "",
-            "color": ""
+            "refresh": 90,
+            "brightness": "1000nits",
+            "color": "1670万色"
         },
         "battery": {
             "capacity": 6480,
@@ -282,8 +341,8 @@
             "y": 2700,
             "x": 1224,
             "refresh": 120,
-            "brightness": "",
-            "color": "",
+            "brightness": "1200nit",
+            "color": "P3广色域",
             "other": ""
         },
         "battery": {
