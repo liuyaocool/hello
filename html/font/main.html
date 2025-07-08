@@ -17,7 +17,7 @@
         }
 
         (function() {
-            let fontData = location.hash.substr(1).split('/');
+            let fontData = location.search.substr(1).split('/');
             fontData[1] = fontData[1].split('.');
             fontData[1][0] = decodeURIComponent(fontData[1][0]);
             document.getElementsByClassName('title')[0].innerText = fontData[1][0] = 
