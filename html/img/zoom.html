@@ -21,8 +21,7 @@
 
 </tbody></table>
 
-<script src="../../js/config.js"></script>
-<script src="../../js/base.js"></script>
+<script src="https://resource.liuyao.link/js/my/util.js"></script>
 <script>
     // 检查页面是否由 iframe 引用
     if (window.self === window.top) {
@@ -41,7 +40,7 @@
         }
     }
     function getFile() {
-        fileChooser(true, null, files => {
+        fileChooser(null, true).then(files => {
             for (let i = 0; i < files.length; i++) {                
                 console.log(`原始文件大小: ${files[i].size} ${files[i].type} ${files[i].name}`);
                 let fn = getFileName(files[i].name, '.', '-zip.');
