@@ -8,7 +8,7 @@ document.getElementById('result').onpaste = function(ev) {
 }
 
 function analyzeChoose() {
-    fileChooser(false, null, files => analyzeLocal(files[0]));
+    fileChooser().then(file => analyzeLocal(file));
 }
 
 function analyzeLocal(file) {

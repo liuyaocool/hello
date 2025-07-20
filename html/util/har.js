@@ -31,10 +31,10 @@ const vm = createApp({
     },
     methods: {
         getFile() {
-            fileChoose(false, null).then(file => {
-                let fileType = file[0].name.split('.');
+            fileChooser().then(file => {
+                let fileType = file.name.split('.');
                 fileType = fileType[fileType.length-1];
-                getTextFromFile(file[0]).then(text => {
+                getTextFromFile(file).then(text => {
                     switch(fileType) {
                         case 'har': this.harDataFill(text); break;
                         default: alert(`file type '${fileType}' not support`); break;
