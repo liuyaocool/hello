@@ -26,6 +26,7 @@
         },
         "function": {
             "interface": "3.5mm耳机接口",
+            "dp": "不支持",
             "wlan": "WiFi5",
             "nfc": false
         }

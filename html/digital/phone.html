@@ -30,6 +30,7 @@
         table {
             /* 表格间无间隙 */
             border-collapse: collapse;
+            width: 1px;
         }
         tbody td {
             padding: 4px 10px;
@@ -57,6 +58,10 @@
         h2 {
             margin: 8px 0px;
             white-space: nowrap;
+        }
+        .phone_sizes {
+            align-items: flex-end; 
+            display: flex;
         }
         .phone_size {
             position: relative;
@@ -166,7 +171,7 @@
             
             <tr><th><h2>外观</h2></th><td v-for="(row, i) in choose"></td></tr>
             <tr><th>长宽</th><td v-for="(row, i) in choose" style="vertical-align: bottom;">
-                <div style="align-items: flex-end; display: flex;">
+                <div class="phone_sizes">
                     <div class="phone_size" v-if="phone[row].appearance"
                         :style="{width: phone[row].appearance.x * 2 + 'px', height: phone[row].appearance.y * 2 + 'px'}">
                         <div class="phone_size_x">{{phone[row].appearance.x}}</div>
@@ -192,6 +197,7 @@
             <tr><th>卫星</th><td v-for="(row, i) in choose">{{phone[row].function.satellite || defEmpty}}</td></tr>
             <tr><th>指纹</th><td v-for="(row, i) in choose">{{phone[row].function.fingerprint || defEmpty}}</td></tr>
             <tr><th>接口</th><td v-for="(row, i) in choose">{{phone[row].function.interface || defEmpty}}</td></tr>
+            <tr><th>DP输出</th><td v-for="(row, i) in choose">{{phone[row].function.dp || defEmpty}}</td></tr>
             <tr><th>无线</th><td v-for="(row, i) in choose">{{phone[row].function.wlan || defEmpty}}</td></tr>
             <tr><th>星闪</th><td v-for="(row, i) in choose">{{bol(phone[row].function.nearlink)}}</td></tr>
             <tr><th>NFC</th><td v-for="(row, i) in choose">{{bol(phone[row].function.nfc)}}</td></tr>
@@ -273,6 +279,7 @@
                     "function": {
                         "satellite": "天通卫星通信(典藏版)",
                         "interface": "USB 3.1 Gen 1",
+                        "dp": "DP1.2",
                         "fingerprint": "侧边指纹",
                         "wlan": "wifi7",
                         "nearlink": true,
@@ -292,8 +299,11 @@
             this.phone = phone;
             this.cpu = cpu;
             this.choose.push("Pura X");
+            this.choose.push("一加13T");
             this.choose.push("Nova 14 Pro");
-            this.choose.push("Nova 14 Ultra");
+            this.choose.push("Mate 70");
+            this.choose.push("Pura 80");
+            // this.choose.push("Nova 14 Ultra");
         },
         methods: {
             bol(obj) {
