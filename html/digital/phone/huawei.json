@@ -21,7 +21,7 @@
         },
         "battery": {
             "capacity": 5600,
-            "power": "66W有线充电，5W有线反向充电；50W无线充电，支持无线反向充电"
+            "power": "有线: 66W+5W反充<br>无线: 50W+反充"
         },
         "appearance": {
             "y": 157.7,
@@ -75,7 +75,7 @@
         },
         "battery": {
             "capacity": 4720,
-            "power": "66W有线充电，40W无线充电，5W有线反向充电"
+            "power": "有线: 66W+5W反充<br>无线: 40W"
         },
         "appearance": {
             "y": 143.2,
@@ -122,7 +122,7 @@
         },
         "battery": {
             "capacity": 5500,
-            "power": "100W有线充电"
+            "power": "100W有线"
         },
         "appearance": {
             "y": 161.73,
@@ -163,7 +163,7 @@
         },
         "battery": {
             "capacity": 5500,
-            "power": "100W有线充电"
+            "power": "100W有线"
         },
         "appearance": {
             "y": 163.4,
@@ -205,7 +205,7 @@
         },
         "battery": {
             "capacity": 5500,
-            "power": "100W有线充电"
+            "power": "100W有线"
         },
         "appearance": {
             "y": 163.4,
@@ -271,7 +271,7 @@
         },
         "battery": {
             "capacity": 5300,
-            "power": "66W有线充电；50W无线充电，支持无线反向充电"
+            "power": "有线: 66W+反冲<br>无线: 50W+反充"
         },
         "appearance": {
             "y": 160.9,

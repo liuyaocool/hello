@@ -1,0 +1,129 @@
+{
+    "iPhone 16pro": {
+        "cpu": "A18 pro",
+        "model": "",
+        "time": "2024年9月",
+        "price": {
+            "128": 7999,
+            "256": 8999,
+            "512G": 10999,
+            "1T": 12999
+        },
+        "screen": {
+            "type": "OLED",
+            "material": "超瓷晶玻璃",
+            "size": 6.3,
+            "y": 2622,
+            "x": 1206,
+            "refresh": 120,
+            "brightness": "2000",
+            "color": "P3 广色域",
+            "other": ""
+        },
+        "battery": {
+            "capacity": 3582,
+            "power": "有线: 20W<br>无线: 15W"
+        },
+        "appearance": {
+            "y": 149.6,
+            "x": 71.5,
+            "z": 8.25,
+            "weight": 199,
+            "shell": "钛中框，亚光质感玻璃背板"
+        },
+        "function": {
+            "satellite": "",
+            "interface": "USB 3",
+            "dp": "支持",
+            "fingerprint": "不支持",
+            "wlan": "wifi7",
+            "nearlink": false,
+            "nfc": true
+        },
+        "camera": ""
+    },
+    "iPhone 16": {
+        "cpu": "A18",
+        "model": "",
+        "time": "2024年9月",
+        "price": {
+            "128": 5999,
+            "256": 6999,
+            "512G": 8999
+        },
+        "screen": {
+            "type": "OLED",
+            "material": "超瓷晶玻璃",
+            "size": 6.1,
+            "y": 2556,
+            "x": 1179,
+            "refresh": 60,
+            "brightness": "2000",
+            "color": "P3 广色域",
+            "other": ""
+        },
+        "battery": {
+            "capacity": 3561,
+            "power": "有线: 20W<br>无线: 15W"
+        },
+        "appearance": {
+            "y": 147.6,
+            "x": 71.6,
+            "z": 7.8,
+            "weight": 170,
+            "shell": "铝中框，融色玻璃背板"
+        },
+        "function": {
+            "satellite": "",
+            "interface": "USB 2",
+            "dp": "支持",
+            "fingerprint": "不支持",
+            "wlan": "wifi7",
+            "nearlink": false,
+            "nfc": true
+        },
+        "camera": ""
+    },
+    "iPhone 16e": {
+        "cpu": "A18e",
+        "model": "",
+        "time": "2025年2月",
+        "price": {
+            "128": 4499,
+            "256": 5499,
+            "512G": 7499
+        },
+        "screen": {
+            "type": "OLED",
+            "material": "",
+            "size": 6.1,
+            "y": 2532,
+            "x": 1170,
+            "refresh": 60,
+            "brightness": "1200",
+            "color": "P3 广色域",
+            "other": ""
+        },
+        "battery": {
+            "capacity": 3961,
+            "power": "有线: 20W"
+        },
+        "appearance": {
+            "y": 146.7,
+            "x": 71.5,
+            "z": 7.8,
+            "weight": 167,
+            "shell": "铝中框，玻璃背板"
+        },
+        "function": {
+            "satellite": "",
+            "interface": "USB 2",
+            "dp": "支持?",
+            "fingerprint": "不支持",
+            "wlan": "wifi6",
+            "nearlink": false,
+            "nfc": true
+        },
+        "camera": ""
+    }
+}

@@ -95,6 +95,7 @@
 </head>
 <body>
 <div id="app">
+    <label><input type="checkbox" v-model="chooseAll" value="true">全选</label>
     <span v-for="(v, k) in phone">
         <label v-if="v.screen">
             <input type="checkbox" name="name" v-model="choose" :value="k">
@@ -109,15 +110,34 @@
         <tbody>
             <!-- <tr><td><h2>基本</h2></td></tr> -->
             <tr><th>cpu</th><td v-for="(row, i) in choose">{{phone[row].cpu}}</td></tr>
-            <tr><th>型号</th><td v-for="(row, i) in choose">{{phone[row].model}}</td></tr>
-            <tr><th>上市时间</th><td v-for="(row, i) in choose">{{phone[row].time}}</td></tr>
-            <tr><th>价格</th><td v-for="(row, i) in choose">
-                <span v-for="(v, k) in phone[row].price">{{v}}（{{k}}）<br></span>
-            </td></tr>
             
             <tr><th><h2>电池</h2></th><td v-for="(row, i) in choose"></td></tr>
             <tr><th>容量</th><td v-for="(row, i) in choose">{{phone[row].battery.capacity}}</td></tr>
-            <tr><th>充电</th><td v-for="(row, i) in choose">{{phone[row].battery.power}}</td></tr>
+            <tr><th>充电</th><td v-for="(row, i) in choose" v-html="phone[row].battery.power"></td></tr>
+            
+            <tr><th><h2>外观</h2></th><td v-for="(row, i) in choose"></td></tr>
+            <tr><th>长宽</th><td v-for="(row, i) in choose" style="vertical-align: bottom;">
+                <div class="phone_sizes">
+                    <div class="phone_size" v-if="phone[row].appearance"
+                        :style="{width: phone[row].appearance.x * 2 + 'px', height: phone[row].appearance.y * 2 + 'px'}">
+                        <div class="phone_size_x">{{phone[row].appearance.x}}</div>
+                        <div class="phone_size_y">{{phone[row].appearance.y}}</div>
+                    </div>
+                    <div class="phone_size" v-if="phone[row].appearance2" style="margin-left: 5px;"
+                        :style="{width: phone[row].appearance2.x * 2 + 'px', height: phone[row].appearance2.y * 2 + 'px'}">
+                        <div class="phone_size_x">{{phone[row].appearance2.x}}</div>
+                        <div class="phone_size_y">{{phone[row].appearance2.y}}</div>
+                    </div>
+                </div>
+            </td></tr>
+            <tr><th>厚度</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div>{{phone[row].appearance.z}}</div>
+                    <div v-if="phone[row].appearance2">| {{phone[row].appearance2.z}}</div>
+                </div>
+            </td></tr>
+            <tr><th>重量</th><td v-for="(row, i) in choose">{{phone[row].appearance.weight || defEmpty}}</td></tr>
+            <tr><th>材质</th><td v-for="(row, i) in choose">{{phone[row].appearance.shell || defEmpty}}</td></tr>
             
             <tr><th><h2>屏幕</h2></th><td v-for="(row, i) in choose"></td></tr>
             <tr><th>类型</th><td v-for="(row, i) in choose">
@@ -169,30 +189,6 @@
                 </div>
             </td></tr>
             
-            <tr><th><h2>外观</h2></th><td v-for="(row, i) in choose"></td></tr>
-            <tr><th>长宽</th><td v-for="(row, i) in choose" style="vertical-align: bottom;">
-                <div class="phone_sizes">
-                    <div class="phone_size" v-if="phone[row].appearance"
-                        :style="{width: phone[row].appearance.x * 2 + 'px', height: phone[row].appearance.y * 2 + 'px'}">
-                        <div class="phone_size_x">{{phone[row].appearance.x}}</div>
-                        <div class="phone_size_y">{{phone[row].appearance.y}}</div>
-                    </div>
-                    <div class="phone_size" v-if="phone[row].appearance2" style="margin-left: 5px;"
-                        :style="{width: phone[row].appearance2.x * 2 + 'px', height: phone[row].appearance2.y * 2 + 'px'}">
-                        <div class="phone_size_x">{{phone[row].appearance2.x}}</div>
-                        <div class="phone_size_y">{{phone[row].appearance2.y}}</div>
-                    </div>
-                </div>
-            </td></tr>
-            <tr><th>厚度</th><td v-for="(row, i) in choose">
-                <div class="multi_size">
-                    <div>{{phone[row].appearance.z}}</div>
-                    <div v-if="phone[row].appearance2">| {{phone[row].appearance2.z}}</div>
-                </div>
-            </td></tr>
-            <tr><th>重量</th><td v-for="(row, i) in choose">{{phone[row].appearance.weight || defEmpty}}</td></tr>
-            <tr><th>材质</th><td v-for="(row, i) in choose">{{phone[row].appearance.shell || defEmpty}}</td></tr>
-            
             <tr><th><h2>功能</h2></th><td v-for="(row, i) in choose"></td></tr>
             <tr><th>卫星</th><td v-for="(row, i) in choose">{{phone[row].function.satellite || defEmpty}}</td></tr>
             <tr><th>指纹</th><td v-for="(row, i) in choose">{{phone[row].function.fingerprint || defEmpty}}</td></tr>
@@ -204,7 +200,13 @@
             
             <tr><th><h2>相机</h2></th><td v-for="(row, i) in choose"></td></tr>
             <tr><th>镜头</th><td v-for="(row, i) in choose">{{phone[row].camera || defEmpty}}</td></tr>
-            
+
+            <tr><th><h2>基础</h2></th><td v-for="(row, i) in choose"></td></tr>
+            <tr><th>型号</th><td v-for="(row, i) in choose">{{phone[row].model}}</td></tr>
+            <tr><th>上市时间</th><td v-for="(row, i) in choose">{{phone[row].time}}</td></tr>
+            <tr><th>价格</th><td v-for="(row, i) in choose">
+                <span v-for="(v, k) in phone[row].price">{{v}}（{{k}}）<br></span>
+            </td></tr>
         </tbody>
     </table>
    <div >
@@ -220,6 +222,7 @@
     const vm = createApp({
         data() {
             return {
+                chooseAll: false,
                 defEmpty: '-',
                 choose: [],
                 /**
@@ -262,7 +265,7 @@
                     },
                     "battery": {
                         "capacity": 4720,
-                        "power": "66W有线充电，40W无线充电，5W有线反向充电"
+                        "power": ""
                     },
                     "appearance": {
                         "y": 143.2,
@@ -292,18 +295,39 @@
                 phone: {},
             };
         },
+        computed: {
+        },
+        watch: {
+           "chooseAll": {
+                handler(all) {
+                    console.log(123)
+                    if (!all) {
+                        this.choose = [];
+                        return;
+                    }
+                    let choose = [];
+                    for(var k in this.phone) {
+                        if (this.phone[k].screen) {
+                            choose.push(k);
+                        }
+                    }
+                    this.choose = choose;
+                }
+            },
+        },
         async created() {
             let cpu = await getJsonFile('cpu.json');
             let phone = await getPhone();
 
             this.phone = phone;
             this.cpu = cpu;
+            this.choose.push("Pura 80");
             this.choose.push("Pura X");
             this.choose.push("一加13T");
-            this.choose.push("Nova 14 Pro");
-            this.choose.push("Mate 70");
-            this.choose.push("Pura 80");
+            // this.choose.push("Nova 14 Pro");
+            // this.choose.push("Mate 70");
             // this.choose.push("Nova 14 Ultra");
+            this.choose.push("iPhone 16e");
         },
         methods: {
             bol(obj) {
