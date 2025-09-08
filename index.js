@@ -23,6 +23,8 @@ canvas/magicCube01
 canvas/meteor
 canvas/meteorite01
 canvas/mouse01
+canvas/mouse02
+canvas/universe01
 canvas/polygon
 canvas/rgb
 canvas/star1
