@@ -1,0 +1,40 @@
+{
+    "Bigme HiBreak S": {
+        "cpu": "MTK6765",
+        "time": "",
+        "system": "Android 14",
+        "price": {
+            "6+128G 黑白": 1384,
+            "6+128G 彩色": 1554
+        },
+        "screen": [{
+            "type": "墨水屏",
+            "material": "玻璃",
+            "size": 5.84,
+            "x": 720,
+            "y": 1440,
+            "refresh": 0
+        }],
+        "battery": {
+            "capacity": 3300
+        },
+        "appearance": {
+            "size": [{
+                "x": 76.8,
+                "y": 154,
+                "z": 8.6
+            }],
+            "weight": 170
+        },
+        "function": {
+            "satellite": "✗",
+            "interface": "type-c",
+            "dp": "✗",
+            "fingerprint": "",
+            "wlan": "5G",
+            "nearlink": false,
+            "nfc": false
+        },
+        "camera": "前后双摄"
+    }
+}

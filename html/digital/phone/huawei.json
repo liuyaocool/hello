@@ -8,7 +8,7 @@
             "12+512G": 5199,
             "12+1T": 6199
         },
-        "screen": {
+        "screen": [{
             "type": "OLED",
             "material": "二代昆仑玻璃",
             "size": 6.6,
@@ -16,24 +16,26 @@
             "x": 1256,
             "refresh": 120,
             "brightness": "2800尼特",
-            "color": "10.7 亿色，P3 广色域",
+            "color": "10.7亿色，P3广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 5600,
             "power": "有线: 66W+5W反充<br>无线: 50W+反充"
         },
         "appearance": {
-            "y": 157.7,
-            "x": 74.4,
-            "z": 8.2,
+            "size": [{
+                "y": 157.7,
+                "x": 74.4,
+                "z": 8.2
+            }],
             "weight": 211,
             "shell": "铝合金中框，铝硅玻璃后盖"
         },
         "function": {
             "satellite": "北斗卫星消息",
             "interface": "USB 2.0",
-            "dp": "不支持",
+            "dp": "✗",
             "fingerprint": "侧边指纹",
             "wlan": "wifi7",
             "nearlink": true,
@@ -51,18 +53,17 @@
             "16+512G典藏": 8999,
             "16+1T典藏": 9999
         },
-        "screen": {
+        "screen": [{
             "type": "柔性OLED",
             "material": "UTG玻璃",
             "size": 6.3,
             "y": 2120,
             "x": 1320,
             "refresh": 120,
-            "brightness": "-",
-            "color": "10.7 亿色，P3 广色域",
+            "brightness": "2500尼特",
+            "color": "10.7亿色，P3广色域",
             "other": ""
-        },
-        "screen2": {
+        }, {
             "type": "OLED",
             "material": "铝硅玻璃",
             "size": 3.5,
@@ -70,24 +71,31 @@
             "x": 980,
             "refresh": 120,
             "brightness": "-",
-            "color": "10.7 亿色，P3 广色域",
+            "color": "10.7亿色，P3广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 4720,
             "power": "有线: 66W+5W反充<br>无线: 40W"
         },
         "appearance": {
-            "y": 143.2,
-            "x": 91.7,
-            "z": 7.15,
+            "size": [{
+                "y": 143.2,
+                "x": 91.7,
+                "z": 7.15
+            }, {
+                "y": 74.3,
+                "x": 91.7,
+                "z": 15.1,
+                "screenX": 62.86,
+                "screenY": 62.86,
+                "padding": {
+                    "left": 23.12,
+                    "right": 5.72
+                }
+            }],
             "weight": 195.9,
             "shell": "玻璃，素皮"
-        },
-        "appearance2": {
-            "y": 74.3,
-            "x": 91.7,
-            "z": 15.1
         },
         "function": {
             "satellite": "天通卫星通信(典藏版)",
@@ -109,32 +117,34 @@
             "12+512G": 2999,
             "12+512G昆仑玻璃": 3199
         },
-        "screen": {
+        "screen": [{
             "type": "OLED",
             "material": "铝硅玻璃",
             "size": 6.7,
             "y": 2412,
             "x": 1084,
             "refresh": 120,
-            "brightness": "1100nits",
-            "color": "10.7 亿色，P3 广色域",
+            "brightness": "1100尼特",
+            "color": "10.7亿色，P3广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 5500,
             "power": "100W有线"
         },
         "appearance": {
-            "y": 161.73,
-            "x": 75.48,
-            "z": 7.18,
+            "size": [{
+                "y": 161.73,
+                "x": 75.48,
+                "z": 7.18
+            }],
             "weight": 192,
             "shell": ""
         },
         "function": {
             "satellite": "双向北斗卫星消息",
             "interface": "USB 2.0",
-            "dp": "不支持",
+            "dp": "✗",
             "fingerprint": "侧边指纹",
             "wlan": "wifi6",
             "nearlink": false,
@@ -150,32 +160,34 @@
             "12+512G": 3799,
             "12+512G昆仑玻璃": 3999
         },
-        "screen": {
+        "screen": [{
             "type": "OLED",
             "material": "铝硅玻璃",
             "size": 6.78,
             "y": 2776,
             "x": 1224,
             "refresh": 120,
-            "brightness": "1200nits",
-            "color": "10.7 亿色，P3 广色域",
+            "brightness": "1200尼特",
+            "color": "10.7亿色，P3广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 5500,
             "power": "100W有线"
         },
         "appearance": {
-            "y": 163.4,
-            "x": 75.0,
-            "z": 7.68,
+            "size": [{
+                "y": 163.4,
+                "x": 75.0,
+                "z": 7.68
+            }],
             "weight": 207,
             "shell": ""
         },
         "function": {
             "satellite": "双向北斗卫星消息",
             "interface": "USB 2.0",
-            "dp": "不支持",
+            "dp": "✗",
             "fingerprint": "侧边指纹",
             "wlan": "wifi7",
             "nearlink": true,
@@ -192,32 +204,34 @@
             "12+512G": 4499,
             "12+1T": 4999
         },
-        "screen": {
+        "screen": [{
             "type": "OLED",
             "material": "昆仑玻璃",
             "size": 6.81,
             "y": 2860,
             "x": 1272,
             "refresh": 120,
-            "brightness": "5500nits",
-            "color": "10.7 亿色，P3 广色域",
+            "brightness": "5500尼特",
+            "color": "10.7亿色，P3广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 5500,
             "power": "100W有线"
         },
         "appearance": {
-            "y": 163.4,
-            "x": 75.6,
-            "z": 7.78,
+            "size": [{
+                "y": 163.4,
+                "x": 75.6,
+                "z": 7.78
+            }],
             "weight": 204,
             "shell": ""
         },
         "function": {
             "satellite": "天通卫星通话，双向北斗卫星消息",
             "interface": "USB 2.0",
-            "dp": "不支持",
+            "dp": "✗",
             "fingerprint": "侧边指纹",
             "wlan": "wifi7",
             "nearlink": true,
@@ -258,7 +272,7 @@
             "12+512G": 5999,
             "12+1T": 6999
         },
-        "screen": {
+        "screen": [{
             "type": "OLED",
             "material": "二代昆仑玻璃",
             "size": 6.7,
@@ -266,17 +280,19 @@
             "x": 1216,
             "refresh": 120,
             "brightness": "2500尼特",
-            "color": "10.7 亿色，P3 广色域",
+            "color": "10.7亿色，P3广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 5300,
             "power": "有线: 66W+反冲<br>无线: 50W+反充"
         },
         "appearance": {
-            "y": 160.9,
-            "x": 75.9,
-            "z": 7.8,
+            "size": [{
+                "y": 160.9,
+                "x": 75.9,
+                "z": 7.8
+            }],
             "weight": 203,
             "shell": ""
         },
@@ -385,29 +401,31 @@
         "cpu": "麒麟710A",
         "titme": "2025年4月",
         "model": "JUY-AL00",
-        "screen": {
+        "screen": [{
             "type": "LCD",
             "size": 6.67,
             "y": 1604,
             "x": 720,
             "refresh": 90,
-            "brightness": "1000nits",
+            "brightness": "1000尼特",
             "color": "1670万色"
-        },
+        }],
         "battery": {
             "capacity": 6480,
             "power": "40W有线"
         },
         "appearance": {
-            "y": 166.05,
-            "x": 76.58,
-            "z": 8.33,
+            "size": [{
+                "y": 166.05,
+                "x": 76.58,
+                "z": 8.33
+            }],
             "weight": 206,
             "shell": ""
         },
         "function": {
             "interface": "Type-C 支持USB2.0",
-            "dp": "不支持",
+            "dp": "✗",
             "wlan": "WiFi5"
         }
     },
@@ -420,30 +438,32 @@
             "256G": 1999,
             "512G": 2299
         },
-        "screen": {
+        "screen": [{
             "type": "AMOLED",
             "size": 6.78,
             "y": 2700,
             "x": 1224,
             "refresh": 120,
-            "brightness": "1200nit",
+            "brightness": "1200尼特",
             "color": "P3广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 6000,
             "power": "40W有线"
         },
         "appearance": {
-            "y": 164.0,
-            "x": 74.88,
-            "z": 8.13,
+            "size": [{
+                "y": 164.0,
+                "x": 74.88,
+                "z": 8.13
+            }],
             "weight": 193,
             "shell": ""
         },
         "function": {
             "interface": "USB 2.0",
-            "dp": "不支持",
+            "dp": "✗",
             "wlan": "wifi5",
             "nearlink": false,
             "nfc": true

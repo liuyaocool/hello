@@ -3,30 +3,32 @@
         "cpu": "麒麟820",
         "model": "TEL-AN10",
         "time": "2020年5月",
-        "screen": {
+        "screen": [{
             "type": "LCD",
             "size": 6.63,
             "y": 2400,
             "x": 1080,
             "refresh": 90,
-            "brightness": "470nit",
+            "brightness": "470尼特",
             "color": "1670万色",
             "other": "莱茵TUV低蓝光护眼认证"
-        },
+        }],
         "battery": {
             "capacity": 4300,
             "power": "22.5w有线"
         },
         "appearance": {
-            "y": 163.7,
-            "x": 76.5,
-            "z": 8.8,
+            "size": [{
+                "y": 163.7,
+                "x": 76.5,
+                "z": 8.8
+            }],
             "weight": 203,
             "shell": "塑料中框 玻璃后壳"
         },
         "function": {
             "interface": "3.5mm耳机接口",
-            "dp": "不支持",
+            "dp": "✗",
             "wlan": "WiFi5",
             "nfc": false
         }

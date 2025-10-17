@@ -1,4 +1,48 @@
 {
+    "iPhone 13 MINI": {
+        "cpu": "A15",
+        "time": "2021年9月",
+        "price": {
+            "128": 5199,
+            "256": 5999,
+            "512": 7599
+        },
+        "screen": [{
+            "type": "OLED",
+            "material": "超瓷晶面板",
+            "size": 5.4,
+            "y": 2340,
+            "x": 1080,
+            "ppi": 476,
+            "refresh": 0,
+            "brightness": "800尼特, 峰值1200",
+            "color": "原彩显示，P3广色域",
+            "other": ""
+        }],
+        "battery": {
+            "capacity": 2406,
+            "power": "有线: 20W<br>无线: 7.5W"
+        },
+        "appearance": {
+            "size": [{
+                "x": 64.2,
+                "y": 131.5,
+                "z": 7.65
+            }],
+            "weight": 140,
+            "shell": "航空铝边框，玻璃后壳"
+        },
+        "function": {
+            "satellite": "✗",
+            "interface": "苹果闪电充电口",
+            "dp": "✗",
+            "fingerprint": "✗",
+            "wlan": "wifi6",
+            "nearlink": false,
+            "nfc": true
+        },
+        "camera": ""
+    },
     "iPhone 16pro": {
         "cpu": "A18 pro",
         "model": "",
@@ -9,25 +53,27 @@
             "512": 10999,
             "1T": 12999
         },
-        "screen": {
+        "screen": [{
             "type": "OLED",
             "material": "超瓷晶玻璃",
             "size": 6.3,
             "y": 2622,
             "x": 1206,
             "refresh": 120,
-            "brightness": "2000",
+            "brightness": "2000尼特",
             "color": "P3 广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 3582,
             "power": "有线: 20W<br>无线: 15W"
         },
         "appearance": {
-            "y": 149.6,
-            "x": 71.5,
-            "z": 8.25,
+            "size": [{
+                "y": 149.6,
+                "x": 71.5,
+                "z": 8.25
+            }],
             "weight": 199,
             "shell": "钛中框，亚光质感玻璃背板"
         },
@@ -35,7 +81,7 @@
             "satellite": "",
             "interface": "USB 3",
             "dp": "支持",
-            "fingerprint": "不支持",
+            "fingerprint": "✗",
             "wlan": "wifi7",
             "nearlink": false,
             "nfc": true
@@ -51,25 +97,27 @@
             "256": 6999,
             "512": 8999
         },
-        "screen": {
+        "screen": [{
             "type": "OLED",
             "material": "超瓷晶玻璃",
             "size": 6.1,
             "y": 2556,
             "x": 1179,
             "refresh": 60,
-            "brightness": "2000",
+            "brightness": "2000尼特",
             "color": "P3 广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 3561,
             "power": "有线: 20W<br>无线: 15W"
         },
         "appearance": {
-            "y": 147.6,
-            "x": 71.6,
-            "z": 7.8,
+            "size": [{
+                "y": 147.6,
+                "x": 71.6,
+                "z": 7.8
+            }],
             "weight": 170,
             "shell": "铝中框，融色玻璃背板"
         },
@@ -77,7 +125,7 @@
             "satellite": "",
             "interface": "USB 2",
             "dp": "支持",
-            "fingerprint": "不支持",
+            "fingerprint": "✗",
             "wlan": "wifi7",
             "nearlink": false,
             "nfc": true
@@ -93,25 +141,27 @@
             "256": 5499,
             "512": 7499
         },
-        "screen": {
+        "screen": [{
             "type": "OLED",
             "material": "",
             "size": 6.1,
             "y": 2532,
             "x": 1170,
             "refresh": 60,
-            "brightness": "1200",
+            "brightness": "1200尼特",
             "color": "P3 广色域",
             "other": ""
-        },
+        }],
         "battery": {
             "capacity": 3961,
             "power": "有线: 20W"
         },
         "appearance": {
-            "y": 146.7,
-            "x": 71.5,
-            "z": 7.8,
+            "size": [{
+                "y": 146.7,
+                "x": 71.5,
+                "z": 7.8
+            }],
             "weight": 167,
             "shell": "铝中框，玻璃背板"
         },
@@ -119,7 +169,7 @@
             "satellite": "",
             "interface": "USB 2",
             "dp": "支持?",
-            "fingerprint": "不支持",
+            "fingerprint": "✗",
             "wlan": "wifi6",
             "nearlink": false,
             "nfc": true
