@@ -8,6 +8,7 @@
     <style>
         table input {
             width: 500px;
+            text-align: right;
         }
     </style>
 
@@ -20,11 +21,13 @@
             <td>{{ key }}进制</td>
             <td><input type="text" @input="radixInput(key, $event.target.value)" v-model="radixs[key]"></td>
         </tr>
+        <tr><td colspan="2" style="text-align: right;">
+            <input type="number" v-model="newRadix"
+                    oninput="vm.newRadix=value>36?36:(value<2?2:value)"
+                    style="width: 76px;margin: 10px;text-align: left;">
+            <button @click="addRadix">添加进制（2~36）</button>
+        </td></tr>
     </table>
-    <input type="number" v-model="newRadix"
-           oninput="vm.newRadix=value>36?36:(value<2?2:value)"
-           style="width: 76px;margin: 10px;">
-    <button @click="addRadix">添加进制（2~36）</button>
 </div>
 <script src="https://unpkg.com/vue@3.4.25/dist/vue.global.js"></script>
 <script src="radix.js"></script>

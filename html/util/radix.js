@@ -4,10 +4,10 @@ const vm = createApp({
         return {
             newRadix: 4,
             radixs: {
-                2: '0',
-                8: '0',
-                10: '0',
-                16: '0',
+                2: '',
+                8: '',
+                10: '',
+                16: '',
             },
         };
     },
@@ -20,14 +20,21 @@ const vm = createApp({
         getFormat(radix, v) {
             if (!v) return v;
             switch (radix*1) {
-                case 2: return v.replaceAll(' ', '');
+                case 2: return v.replaceAll('  ', '');
                 default: return v;
             }
         },
         setFormat(radix, v) {
             if (!v) return v;
             switch (radix*1) {
-                case 2: return v.replace(/(.{4})/g, '$1,').replaceAll(',', ' ').trim();
+                case 2: 
+                    let v1 = '', v2, i = v.length;
+                    do {
+                        v1 = '  ' + (v2 = v.slice(Math.max(0, i-4), i)) + v1;
+                        i -= 4;
+                    } while (i > 0);
+                    return v1;
+                    // return v.replace(/(.{4})/g, '$1,').replaceAll(',', ' ').trim();
                 default: return v;
             }
         },
