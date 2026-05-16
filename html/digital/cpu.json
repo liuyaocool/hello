@@ -304,7 +304,27 @@
         "process": "台积电 4nm",
         "geekbench6": [1248, 3809],
         "site": "https://www.mediatek.cn/products/smartphone-2/mediatek-dimensity-8200"
+    },
+    "天玑1080": {
+        "cpu": [
+            [2, "2.6", "A78"],
+            [],
+            [6, "2.0", "A55"]
+        ],
+        "gpu": "Arm Mali-G68 MC4 800MHz",
+        "process": "台积电 6nm",
+        "geekbench6": [967, 2271],
+        "site": "https://www.mediatek.com/zh-cn/products/tablets/mediatek-dimensity-1080"
+    },
+    "MTK6765": {
+        "cpu": [
+            [4, "2.3", "A53"],
+            [],
+            [4, "1.8", "A53"]
+        ],
+        "gpu": "IMG PowerVR GE8320 680MHz",
+        "process": "台积电 12nm",
+        "geekbench6": [0, 0],
+        "site": ""
     }
-
-
 }

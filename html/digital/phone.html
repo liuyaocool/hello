@@ -131,6 +131,14 @@
         <tbody>
             <!-- <tr><td><h2>基本</h2></td></tr> -->
             <tr><th>cpu</th><td v-for="(row, i) in choose">{{phone[row].cpu}}</td></tr>
+            <tr><th>频率</th><td v-for="(row, i) in choose">
+                <span v-if="cpu[phone[row].cpu]" v-for="(row1, i) in cpu[phone[row].cpu].cpu">
+                    <span v-if="row1 && row1.length > 0">{{row1[2]}} {{row1[0]}} * {{row1[1]}}Ghz<br></span>
+                </span>
+            </td></tr>
+            <tr><th>gpu</th><td v-for="(row, i) in choose">
+                <span v-if="cpu[phone[row].cpu]">{{cpu[phone[row].cpu].gpu}}</span>
+            </td></tr>
             
             <tr><th><h2>电池</h2></th><td v-for="(row, i) in choose"></td></tr>
             <tr><th>容量</th><td v-for="(row, i) in choose">{{phone[row].battery.capacity}}</td></tr>
@@ -185,6 +193,13 @@
                 <div class="multi_size">
                     <div v-for="(row, i) in phone[row].screen">
                         {{i>0 ? "| " : ""}} {{row.material}}
+                    </div>
+                </div>
+            </td></tr>
+            <tr><th>分辨率</th><td v-for="(row, i) in choose">
+                <div class="multi_size">
+                    <div v-for="(row, i) in phone[row].screen">
+                        {{i>0 ? "| " : ""}} {{row.x}}✘{{row.y}}
                     </div>
                 </div>
             </td></tr>
@@ -351,7 +366,7 @@
             this.cpu = cpu;
             this.choose.push("iPhone 13 MINI");
             this.choose.push("一加13T");
-            this.choose.push("Pura 80");
+            // this.choose.push("Pura 80");
             this.choose.push("Pura X");
             // this.choose.push("Nova 14 Pro");
             // this.choose.push("Mate 70");

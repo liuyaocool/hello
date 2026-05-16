@@ -36,5 +36,52 @@
             "nfc": false
         },
         "camera": "前后双摄"
+    },
+    "Bigme HiBreak Pro": {
+        "cpu": "天玑1080",
+        "time": "",
+        "system": "Android 14",
+        "price": {
+            "8+256G 黑白": 2719,
+            "8+256G 彩色": 2969
+        },
+        "screen": [{
+            "type": "黑白",
+            "material": "玻璃",
+            "size": 6.13,
+            "x": 824,
+            "y": 1648,
+            "ppi": 300,
+            "refresh": 43
+        },{
+            "type": "彩色",
+            "material": "玻璃",
+            "size": 6.13,
+            "x": 412,
+            "y": 824,
+            "ppi": 150,
+            "refresh": 43
+        }],
+        "battery": {
+            "capacity": 4500
+        },
+        "appearance": {
+            "size": [{
+                "x": 80.9,
+                "y": 159.8,
+                "z": 8.9
+            }],
+            "weight": 193
+        },
+        "function": {
+            "satellite": "✗",
+            "interface": "type-c",
+            "dp": "✗",
+            "fingerprint": "侧边按键指纹",
+            "wlan": "5G",
+            "nearlink": false,
+            "nfc": true
+        },
+        "camera": "前后双摄"
     }
 }
