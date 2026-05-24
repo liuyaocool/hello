@@ -131,6 +131,9 @@
         <tbody>
             <!-- <tr><td><h2>基本</h2></td></tr> -->
             <tr><th>cpu</th><td v-for="(row, i) in choose">{{phone[row].cpu}}</td></tr>
+            <tr><th>工艺</th><td v-for="(row, i) in choose">
+                <span v-if="cpu[phone[row].cpu]">{{cpu[phone[row].cpu].process}}</span>
+            </td></tr>
             <tr><th>频率</th><td v-for="(row, i) in choose">
                 <span v-if="cpu[phone[row].cpu]" v-for="(row1, i) in cpu[phone[row].cpu].cpu">
                     <span v-if="row1 && row1.length > 0">{{row1[2]}} {{row1[0]}} * {{row1[1]}}Ghz<br></span>
@@ -138,6 +141,11 @@
             </td></tr>
             <tr><th>gpu</th><td v-for="(row, i) in choose">
                 <span v-if="cpu[phone[row].cpu]">{{cpu[phone[row].cpu].gpu}}</span>
+            </td></tr>
+            <tr><th>跑分gb6</th><td v-for="(row, i) in choose">
+                <span v-if="cpu[phone[row].cpu] && cpu[phone[row].cpu].geekbench6">
+                    {{cpu[phone[row].cpu].geekbench6[0]}}/{{cpu[phone[row].cpu].geekbench6[1]}}
+                </span>
             </td></tr>
             
             <tr><th><h2>电池</h2></th><td v-for="(row, i) in choose"></td></tr>
@@ -340,7 +348,6 @@
         watch: {
            "chooseAll": {
                 handler(all) {
-                    console.log(123)
                     if (!all) {
                         this.choose = [];
                         return;
@@ -358,21 +365,35 @@
         async created() {
             let cpu = await getJsonFile('cpu.json');
             let phone = await getPhone();
-            for(const k in phone) 
-                if (!phone[k].screen) 
+            for(const k in phone) {
+                if (!phone[k].screen) {
                     delete phone[k];
-
+                    continue;
+                }
+                for (const [i, sc] of phone[k].screen.entries()) {
+                    if (sc.sizeXY) continue;
+                    let size = sc.size, x = sc.x, y = sc.y;
+                    // 1英寸是25.4mm
+                    const inch1 = 25.4;
+                    const ratio = Math.sqrt(x*x + y*y) / size / inch1;
+                    if (phone[k].appearance.size[i]) {
+                        phone[k].appearance.size[i].screenX = (x / ratio).toFixed(2) * 1;
+                        phone[k].appearance.size[i].screenY = (y / ratio).toFixed(2) * 1;    
+                    }
+                }
+            }
             this.phone = phone;
             this.cpu = cpu;
-            this.choose.push("iPhone 13 MINI");
-            this.choose.push("一加13T");
-            // this.choose.push("Pura 80");
-            this.choose.push("Pura X");
-            // this.choose.push("Nova 14 Pro");
-            // this.choose.push("Mate 70");
-            // this.choose.push("Nova 14 Ultra");
-            this.choose.push("iPhone 16e");
-            this.initScreenSize();
+            this.choose.push(
+                // 'Pura 80',
+                // 'Nova 14 Pro',
+                // 'Mate 70',
+                // 'Nova 14 Ultra',
+                // 'iPhone 16e',
+                'iPhone 13 MINI', 
+                '一加13T', 
+                'Pura X'
+            );
         },
         methods: {
             bol(obj) {
@@ -380,24 +401,6 @@
             },
             isNul(data) {
                 return null == data || undefined == data;
-            },
-            initScreenSize() {
-                for(const k in this.phone) {
-                    for (let i = 0, sc; i < this.phone[k].screen.length; i++) {
-                        sc = this.phone[k].screen[i];
-                        if (sc.sizeXY)
-                            continue;
-                        let size = sc.size, x = sc.x, y = sc.y;
-                        // 1英寸是25.4mm
-                        const inch1 = 25.4;
-                        const ratio = Math.sqrt(x*x + y*y) / size / inch1;
-                        this.phone[k].appearance.size[i].screenX = (x / ratio).toFixed(2) * 1;
-                        this.phone[k].appearance.size[i].screenY = (y / ratio).toFixed(2) * 1;
-                    }
-                    for(const sc of this.phone[k].screen) {
-                        console.log(sc);
-                    }
-                }
             },
         }
     }).mount('#app');
