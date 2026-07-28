@@ -89,7 +89,6 @@
         <li onclick="menuClick('3')">3: 文字全屏</li>
         <li onclick="menuClick('4')">4: 红绿蓝黑白</li>
         <li onclick="menuClick('5')">5: RGB颜色跑图</li>
-        <li onclick="menuClick('6')">6: 一些图片</li>
     </ul>
 </body>
 
@@ -201,6 +200,7 @@ function rgbFull(repeatOpt) {
         <svg><use href="res/axis.svg#axis"/></svg>
         <canvas id="rgbFullCanvas" width=256 height=256></canvas>
         <div class="red"><div id="rgbFullRedRatio" style="--ratio: 0%"></div></div>
+        <div id="rgbFullRedNum" style="text-align:center;">0</div>
     </div>`;
     idx = 0;
     rgbFullRun();
@@ -210,7 +210,8 @@ function rgbFullRun() {
     let ctx = rgbFullCanvas.getContext('2d'), ratio_1 = 0.390625;
     ctx.putImageData(RGB_CACHE[idx], 0, 0);
     rgbFullRedRatio.style.setProperty('--ratio', `${ratio_1 * idx}%`);
-    if(++idx >= RGB_CACHE.length) idx %= RGB_CACHE.length;
+    rgbFullRedNum.innerText = idx;
+    if(++idx > 255) idx %= 256;
     requestAnimationFrame(rgbFullRun);
     // setTimeout(rgbFullRun, 5);
 }
