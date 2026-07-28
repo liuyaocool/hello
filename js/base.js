@@ -1,3 +1,8 @@
+// 检查页面是否由 iframe 引用
+if (window.self === window.top) {
+    document.body.style.backgroundColor = '#2e3133';
+}
+    
 function loadRemoteBody(htmlUrl) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', htmlUrl, false);

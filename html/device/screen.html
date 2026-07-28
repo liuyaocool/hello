@@ -4,8 +4,248 @@
     <meta charset="UTF-8">
     <title>屏幕检测</title>
     <link rel="stylesheet" href="../../css/theme.css"/>
+    <style type="text/css">
+        .full {
+            width: 100%;
+            height: 100%;
+        }
+        .max-full {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .center {
+            /*  居中  */
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #main {
+            overflow: auto;
+            /* Firefox */
+            scrollbar-width: none;
+            /* IE/Edge 旧版 */
+            -ms-overflow-style: none;
+        }
+        /* Chrome/Safari/Edge 新版 */
+        #main::-webkit-scrollbar {
+            display: none; /* 完全隐藏 */
+            width: 0;
+            height: 0;
+        }
+        #help_tip {
+            font-size: 2vw;
+            background: gray;
+        }
+        .rgb-full {
+            width: 288px;
+            height: 288px;
+            color: gray;
+        }
+        .rgb-full svg {
+            width: 100%;
+            height: 100%;
+        }
+        .rgb-full canvas {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .rgb-full .red {
+            position: relative;
+            width: 256px;
+            height: 30px;
+            margin-left: 20px;
+            background: linear-gradient(to right, #000000 0%, #ff0000 100%);
+        }
+        .rgb-full > .red > div {
+            width: 2px;
+            height: 30px;
+            background: white;
+            margin-left: var(--ratio);
+        }
+        .rgb-full > .red:before {
+            content: '0';
+            position: absolute;
+            left: -12px;
+            top: 3px;
+        }
+        .rgb-full > .red:after {
+            content: '255(红)';
+            position: absolute;
+            right: -56px;
+            top: 3px;
+        }
+    </style>
 </head>
 <body>
-    <img src="testscreen.jpg">
+    <div id="main" class="full"></div>
+    <ul id="help_tip" class="center">
+        <li>h: 帮助</li>
+        <li onclick="menuClick('v')">v: 切换全屏</li>
+        <li onclick="menuClick('1')">1: 4k电视分辨率测试图</li>
+        <li onclick="menuClick('2')">2: 120fps测试视频</li>
+        <li onclick="menuClick('3')">3: 文字全屏</li>
+        <li onclick="menuClick('4')">4: 红绿蓝黑白</li>
+        <li onclick="menuClick('5')">5: RGB颜色跑图</li>
+        <li onclick="menuClick('6')">6: 一些图片</li>
+    </ul>
 </body>
+
+<script src="../../js/base.js"></script>
+<script>
+const STATE = {
+    READY: 0,
+    RUNNING: 1,
+    STOP: 2
+}, KEYBIND_EV = {
+    // key: [function, return?]
+    "1": [p4k, false],
+    "2": [fps120, false],
+    "3": [text, false],
+    "4": [rgbwb, false],
+    "5": [rgbFull, false],
+    "v": [toggleFullscreen, true],
+    "h": [toggleHelp, true],
+};
+let cur_k, idx, isRgbFull = false;
+const RGB_CACHE = [];
+
+(function () {
+    let canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 256;
+    let ctx = canvas.getContext('2d');
+    for (let i = 0; i < 256; i++) {
+        idx = 0;
+        RGB_CACHE[i] = ctx.createImageData(256, 256);
+        for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) {
+            RGB_CACHE[i].data[idx++] = i;
+            RGB_CACHE[i].data[idx++] = y;
+            RGB_CACHE[i].data[idx++] = x;
+            RGB_CACHE[i].data[idx++] = 255;
+        }
+    }
+    canvas.remove();
+})()
+
+document.onkeydown = function (ev) {
+    console.log(ev);
+    menuClick(ev.key);
+}
+
+document.onkeyup = function (ev) {
+    switch (ev.key) {
+    }
+}
+
+window.addEventListener("scroll", e => {
+    console.log(e);
+});
+
+main.addEventListener('click', e=> {
+    let w = document.body.offsetWidth;
+    if (e.x < w/2) {
+        toggleHelp();
+    } else {
+        if(cur_k) KEYBIND_EV[cur_k][0](true);
+    }
+});
+
+function menuClick(key) {
+    if (!KEYBIND_EV[key]) return;
+    let repeatOpt = cur_k == key;
+    if(!repeatOpt) reset();
+    KEYBIND_EV[key][0](repeatOpt);
+    if(KEYBIND_EV[key][1]) return;
+    if (!cur_k) toggleHelp();
+    cur_k = key;
+}
+
+function reset() {
+    main.innerHTML = '';
+    idx = 0;
+    isRgbFull = false;
+}
+
+function p4k() {
+    let p4k_len = 3;
+    console.log(idx);
+    main.innerHTML = `<img src="res/screen${idx+1}.jpg" class="max-full">`;
+    idx = (idx + 1) % p4k_len;
+}
+
+function fps120() {
+    main.innerHTML = '<video src="res/4K_120fps.mp4" autoplay muted loop class="full"></video>';
+}
+
+function text() {
+    let str= '<span style="font-size:14px;">';
+    for(let i = 0; i < 1000; i++)  str += '疑御橱剑僵鞅膏慕谭隔郸勤叠臂碌薛器撤狮赢懒避婵骡频';
+    main.innerHTML = str + '</span>';
+}
+
+function rgbwb() {
+    let clr = ["red", "green", "blue", "black", "white"];
+    main.innerHTML = `<div class="full" style="background: ${clr[idx]};"></div>`;
+    idx = (idx + 1) % clr.length;
+}
+
+function rgbFull(repeatOpt) {
+    isRgbFull = true;
+    if(repeatOpt) return;
+    main.innerHTML = `
+    <h1 style="text-align: center;">RGB</h1>
+    <div class="rgb-full center">
+        <svg><use href="res/axis.svg#axis"/></svg>
+        <canvas id="rgbFullCanvas" width=256 height=256></canvas>
+        <div class="red"><div id="rgbFullRedRatio" style="--ratio: 0%"></div></div>
+    </div>`;
+    idx = 0;
+    rgbFullRun();
+}
+function rgbFullRun() {
+    if (!isRgbFull) return;
+    let ctx = rgbFullCanvas.getContext('2d'), ratio_1 = 0.390625;
+    ctx.putImageData(RGB_CACHE[idx], 0, 0);
+    rgbFullRedRatio.style.setProperty('--ratio', `${ratio_1 * idx}%`);
+    if(++idx >= RGB_CACHE.length) idx %= RGB_CACHE.length;
+    requestAnimationFrame(rgbFullRun);
+    // setTimeout(rgbFullRun, 5);
+}
+
+function toggleHelp() {
+    help_tip.style.display = help_tip.style.display ? '' : 'none';
+}
+
+function toggleFullscreen() {
+    // 1. 判断当前是否处于全屏状态（兼容各浏览器）
+    const isFullscreen = document.fullscreenElement || 
+                         document.webkitFullscreenElement || 
+                         document.msFullscreenElement;
+    console.log(isFullscreen)
+    if (isFullscreen) {
+        // 2. 如果已在全屏，则退出
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    } else {
+        // 3. 如果未全屏，则进入全屏
+        const el = document.documentElement; // 全屏整个页面
+        // 如果要对某个元素全屏，改成：const el = document.getElementById('yourId');
+        if (el.requestFullscreen) {
+            el.requestFullscreen();
+        } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+        } else if (el.msRequestFullscreen) {
+            el.msRequestFullscreen();
+        }
+    }
+}
+
+</script>
 </html>
