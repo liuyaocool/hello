@@ -81,6 +81,7 @@
 <body>
     <div id="main" class="full"></div>
     <ul id="help_tip" class="center">
+        <li style="font-size: 20px;">tips: 点左半屏帮助，右半屏模拟重复点</li>
         <li>h: 帮助</li>
         <li onclick="menuClick('v')">v: 切换全屏</li>
         <li onclick="menuClick('1')">1: 4k电视分辨率测试图</li>
@@ -148,7 +149,7 @@ main.addEventListener('click', e=> {
     if (e.x < w/2) {
         toggleHelp();
     } else {
-        if(cur_k) KEYBIND_EV[cur_k][0](true);
+        menuClick(cur_k);
     }
 });
 
@@ -158,7 +159,7 @@ function menuClick(key) {
     if(!repeatOpt) reset();
     KEYBIND_EV[key][0](repeatOpt);
     if(KEYBIND_EV[key][1]) return;
-    if (!cur_k) toggleHelp();
+    hideHelp();
     cur_k = key;
 }
 
@@ -215,7 +216,13 @@ function rgbFullRun() {
 }
 
 function toggleHelp() {
-    help_tip.style.display = help_tip.style.display ? '' : 'none';
+    help_tip.style.display ? showHelp() : hideHelp();
+}
+function showHelp() {
+    help_tip.style.display = '';
+}
+function hideHelp() {
+    help_tip.style.display = 'none';
 }
 
 function toggleFullscreen() {
