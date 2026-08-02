@@ -6,10 +6,19 @@
     <link rel="stylesheet" href="../../css/theme.css"/>
 
     <style>
-        iframe {
+        body {
+            text-align: center;
+        }
+        .iframe1 {
             width: 150px;
             height: 36px;
+            border: none;
             background-color: #ffbb7fc2;
+            margin-bottom: -12px;
+        }
+        .iframe2 {
+            width: 100%;
+            height: calc(100% - 60px);
             border: none;
         }
         button {
@@ -19,9 +28,12 @@
 </head>
 <body>
 
-<iframe src="http://61linux.com/getip"></iframe>
-<br><button onclick="window.open('https://qifu-api.baidubce.com/ip/local/geo/v1/district?')">详情(baidubce)</button>
-<br><button onclick="window.open('http://61linux.com/getip')">详情(61linux)</button>
+<iframe class="iframe1" src="http://61linux.com/getip"></iframe>
+<button onclick="window.open('http://61linux.com/getip')">←详情(61linux)</button>
+<button onclick="window.open('https://ifconfig.me/')">详情(ifconfig.me)↓</button>
+<br>
+<iframe class="iframe2" src="https://ifconfig.me/"></iframe>
 
+<script src="../../js/base.js"></script>
 </body>
 </html>

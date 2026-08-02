@@ -8,7 +8,7 @@ body,html{
 }
 
 textarea, input {
-    background-color: #2e3133ed;
+    background-color: #00000000;
     border: gray 1px solid;
     color: white;
     outline: none;
