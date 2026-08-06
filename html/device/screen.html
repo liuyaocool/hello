@@ -99,7 +99,7 @@ const STATE = {
     RUNNING: 1,
     STOP: 2
 }, KEYBIND_EV = {
-    // key: [function, return?]
+    // key: [function, 是否辅助类函数]
     "1": [p4k, false],
     "2": [fps120, false],
     "3": [text, false],
@@ -155,9 +155,12 @@ main.addEventListener('click', e=> {
 function menuClick(key) {
     if (!KEYBIND_EV[key]) return;
     let repeatOpt = cur_k == key;
+    if(KEYBIND_EV[key][1]) {
+        KEYBIND_EV[key][0](repeatOpt);
+        return
+    };
     if(!repeatOpt) reset();
     KEYBIND_EV[key][0](repeatOpt);
-    if(KEYBIND_EV[key][1]) return;
     hideHelp();
     cur_k = key;
 }
@@ -227,11 +230,11 @@ function hideHelp() {
 }
 
 function toggleFullscreen() {
+    hideHelp();
     // 1. 判断当前是否处于全屏状态（兼容各浏览器）
     const isFullscreen = document.fullscreenElement || 
                          document.webkitFullscreenElement || 
                          document.msFullscreenElement;
-    console.log(isFullscreen)
     if (isFullscreen) {
         // 2. 如果已在全屏，则退出
         if (document.exitFullscreen) {
